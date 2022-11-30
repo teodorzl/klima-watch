@@ -1,0 +1,283 @@
+body {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	background: #e7edfa;
+	font-family: "DM Sans", sans-serif;
+}
+
+/* ELEMENT & TEXT STYLES */
+
+h1 {
+	font-size: 28px;
+	font-weight: bold;
+	padding-top: 10px;
+}
+
+h2 {
+	font-size: 24px;
+	font-weight: lighter;
+}
+
+h3 {
+	font-size: 20px;
+	font-weight: lighter;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+strong {
+	font-weight: bold;
+}
+
+small {
+	font-size: 14px;
+}
+
+p {
+	margin: 5px 10px;
+}
+
+a {
+	text-decoration: none;
+	color: #0a95c0;
+	transition: all 150ms ease-in;
+}
+
+a:hover {
+	text-decoration: underline;
+	background: linear-gradient(rgba(212, 214, 254, 0.8), #9acedd);
+	border-radius: 10px;
+	padding: 2px 4px;
+}
+
+hr {
+	margin: 0;
+}
+
+footer i {
+	font-size: 14px;
+	color: rgba(43, 47, 127, 0.8);
+}
+
+.toggle-temps {
+	font-size: 14px;
+	vertical-align: super;
+}
+
+.toggle-temps a:hover {
+	font-size: 16px;
+}
+
+.celsius {
+	padding-left: 3px;
+}
+
+#location {
+	font-weight: bold;
+}
+
+/* SEARCH BAR */
+
+button i {
+	color: #0a95c0;
+	text-shadow: 1px 1px 8px rgba(145, 145, 145, 0.15);
+}
+
+.input-group input {
+	font-size: 16px;
+	border-color: #0a95c0;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.input-group button {
+	background-color: #f0f7f8;
+	border-color: #0a95c0;
+	border-radius: 30px;
+	padding: 5px 14px;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.input-group button:hover {
+	background-color: #0a95c0;
+	border-color: #0a95c0;
+}
+
+.input-group button:hover i {
+	color: white;
+	text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* THEME TOGGLE SWITCH  */
+
+#flexSwitchCheckChecked {
+	padding: 15px 24px;
+}
+
+.form-switch .form-check-input {
+	margin-left: 0;
+}
+
+.form-check-input:checked {
+	background-color: #0a95c0;
+	border-color: #0a95c0;
+}
+
+.form-check-input {
+	background-color: #f0f7f8;
+	border-color: #0a95c0;
+}
+
+/* CONTAINER CONTENT */
+
+.local-overview,
+.global-overview {
+	box-shadow: 2px 2px 6px 1px rgba(0, 0, 0, 0.15),
+		-2px -2px 6px 1px rgba(0, 0, 0, 0.15);
+	border-radius: 20px;
+	background: #fcfcfc;
+}
+
+.weather-icon {
+	filter: drop-shadow(-2px 3px 16px rgba(43, 47, 127, 0.18)) contrast(0.9);
+}
+
+/* LOCAL WEATHER CONTAINER CONTENT */
+
+.daily,
+.card,
+.form-check-input {
+	box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.current-weather {
+	background: #bfedfb;
+	border-radius: 10px;
+}
+
+.current-weather h1 {
+	font-size: 40px;
+}
+
+.card {
+	min-height: 230px;
+	margin-top: 10px;
+}
+
+.card-img {
+	height: 230px;
+	object-fit: cover;
+	opacity: 0.5;
+}
+
+.card li {
+	font-size: 18px;
+	background: rgba(198, 241, 217, 0.4);
+}
+
+.temp-details i {
+	font-size: 13px;
+	color: rgba(0, 82, 37, 0.798);
+	padding-left: 10px;
+}
+
+.temp-details .card {
+	background: rgba(198, 241, 217, 0.4);
+}
+
+.sun-time i {
+	font-size: 17px;
+	color: #00526beb;
+}
+
+/* DAILY FORECAST STYLES */
+
+.full-forecast {
+	overflow-x: scroll;
+	padding: 10px;
+	width: 100%;
+	overflow-y: visible;
+}
+
+.daily {
+	border-radius: 10px;
+	text-align: center;
+	background: rgba(149, 205, 236, 0.22);
+	padding: 8px 18px;
+}
+
+.daily p:first-of-type {
+	font-weight: bold;
+}
+
+.daily p {
+	font-size: 16px;
+}
+
+.daily:hover {
+	background: rgba(73, 177, 234, 0.33);
+	transform: scale(1.1);
+}
+
+.daily:hover .weather-icon {
+	transform: scale(1.1);
+	filter: drop-shadow(-2px 3px 16px rgba(53, 56, 108, 0.4));
+}
+
+/* GLOBAL FORECAST STYLES */
+
+.global-icon {
+	object-fit: contain;
+}
+
+.global-item:hover {
+	background: #e7edfa;
+	border-radius: 4px;
+}
+
+.global-item {
+	padding: 12px 4px;
+}
+
+/* DARK STYLES */
+
+.dark {
+	background: #242230;
+	color: #f6f7fa;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.dark-container {
+	background: #2e3540;
+}
+
+.dark-icon i {
+	color: rgb(225, 255, 239);
+	text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.35);
+}
+
+.dark-btn button {
+	background: #2e3540;
+	border: 1px solid #545555;
+}
+
+.dark-btn i {
+	color: #f6f7fa;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.dark-hover:hover {
+	background: linear-gradient(
+		343deg,
+		rgba(36, 34, 48, 1) 0%,
+		rgba(39, 50, 88, 0.781524926686217) 100%
+	);
+}
+
+.light-hover:hover {
+	background: rgba(149, 205, 236, 0.22);
+}
