@@ -5,4 +5,7 @@
 function homeButton() {
     location.href = '/home/Dashboard';
 }
-    
+
+function test() {
+    console.log("ok");
+}    

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\last_project_for_sure\\klima-watch\\test1\\test1.csproj",
+      "projectUniqueName": "D:\\project4\\KlimaWatch\\klima-watch\\test1\\test1.csproj",
       "projectName": "test1",
-      "projectPath": "D:\\last_project_for_sure\\klima-watch\\test1\\test1.csproj",
+      "projectPath": "D:\\project4\\KlimaWatch\\klima-watch\\test1\\test1.csproj",
       "packagesPath": "C:\\Users\\thanh\\.nuget\\packages\\",
-      "outputPath": "D:\\last_project_for_sure\\klima-watch\\test1\\obj\\",
+      "outputPath": "D:\\project4\\KlimaWatch\\klima-watch\\test1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\thanh\\AppData\\Roaming\\NuGet\\NuGet.Config"
