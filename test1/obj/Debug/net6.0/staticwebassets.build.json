@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HQ/neD3PrW3V4EuBH8BqGqACiYQL6rYHKRKcpYWyuy0=",
+  "Hash": "aSnzsOoeobcBNWa6QHuwGtcBcw4lr+Zqe7eJsNAd3XY=",
   "Source": "test1",
   "BasePath": "_content/test1",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\project4\\KlimaWatch\\klima-watch\\test1\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\test1.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\project4\\KlimaWatch\\klima-watch\\test1\\wwwroot\\css\\home_page.css",
+      "SourceId": "test1",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\project4\\KlimaWatch\\klima-watch\\test1\\wwwroot\\",
+      "BasePath": "_content/test1",
+      "RelativePath": "css/home_page.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\home_page.css"
     },
     {
       "Identity": "D:\\project4\\KlimaWatch\\klima-watch\\test1\\wwwroot\\css\\site.css",
