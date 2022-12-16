@@ -1,4 +1,4 @@
-namespace test1.Models;
+namespace KlimaWatch.Models;
 
 public class ErrorViewModel
 {
