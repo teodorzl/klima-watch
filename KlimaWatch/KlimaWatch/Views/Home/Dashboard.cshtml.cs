@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace test1.Views.Shared;
+namespace KlimaWatch.Views.Home;
 
 public class Dashboard : PageModel
 {

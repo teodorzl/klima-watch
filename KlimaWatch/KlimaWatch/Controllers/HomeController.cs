@@ -1,14 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KlimaWatch.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
-namespace test1.Controllers;
+namespace KlimaWatch.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly INodesService _nodesService;
+    private readonly IOwmService _owmService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, INodesService nodesService, IOwmService owmService)
     {
         _logger = logger;
+        _nodesService = nodesService;
+        _owmService = owmService;
     }
 
     public IActionResult Index()

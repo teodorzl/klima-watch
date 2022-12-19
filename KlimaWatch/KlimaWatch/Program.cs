@@ -1,7 +1,14 @@
+using KlimaWatch.Data;
+using KlimaWatch.Services;
+using KlimaWatch.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<INodesService, NodesService>();
+builder.Services.AddScoped<IOwmService, OwmService>();
+builder.Services.AddDbContext<KlimaWatchContext>();
 
 var app = builder.Build();
 
@@ -23,5 +30,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+await MqttClient.ConnectClient();
+OwmClient.StartClient();
 
 app.Run();

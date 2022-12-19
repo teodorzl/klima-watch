@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace test1.Views.Home;
+namespace KlimaWatch.Views.Home;
 
 public class Team : PageModel
 {
