@@ -9,6 +9,7 @@
     <ItemGroup>
       <Folder Include="Migrations" />
       <Folder Include="Models" />
+      <Folder Include="wwwroot\img" />
     </ItemGroup>
 
     <ItemGroup>
@@ -23,6 +24,52 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="MQTTnet" Version="4.1.4.563" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\clear-night-moon.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\clear-night.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\clear-windy-morning.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\clear-windy-night.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\cloudy.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\heavy-windstorm.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\light-rain.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\light-snow.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\lightning-showers.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\lightning.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\morning-showers.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\partly-sunny.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\rainbow-dark.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\rainstorm.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\snow.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\snowstorm.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\sunny.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\thunderstorm.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\wind-rain.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\dark\wind.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\day-landscape.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\clear-night.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\clear-winds.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\cloudy-night.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\cloudy.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\light-rain.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\light-snow.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\lightning.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\partly-sunny.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\rain-winds.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\rainbow.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\rainstorm.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\snowstorm-day.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\snowstorm-night.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\sun.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\sunny-rain.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\thunder-rainstorm.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\thunderstorm.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\windstorm.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\windy-day.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\light\windy-night.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\night-landscape.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\img\assets\og-img.png" />
     </ItemGroup>
 
 </Project>

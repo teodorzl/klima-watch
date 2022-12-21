@@ -22,155 +22,116 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script src="/js/site.js"></script>
 <div class="container">
+	<!--Title-->
 	<div class="container text-md-start my-8 mt-9">
 		<div class="row align-items-center">
-			<h1 class="col-md-6">Weather Dashboard</h1>
+			<h1 class="col-md-6">General Dashboard</h1>
 			<div class="form-check form-switch ps-2 align-self-center col-1 me-4 me-md-1">
 				<input
 					class="form-check-input"
 					type="checkbox"
 					id="flexSwitchCheckChecked"
-					role="switch"
-				/>
+					role="switch"/>
 			</div>
 		</div>
 	</div>
 	<div class="row d-flex">
-		<div class="local-overview col ms-lg-4 mt-4">
-			<div class="mx-3 my-4">
-				<h2>Forecast in <span id="location">Enschede</span></h2>
-			</div>
-			<div class="container flex-md-row flex-column">
-				<div class="row">
-					<section class="temp-overview col-lg-5">
-						<div class="current-weather card">
-							<div class="card-body">
-								<div class="d-flex">
-									<h1 class="flex-grow-1">	
-										<span id="temp-now">2°C</span>
-										<span class="toggle-temps"></span>
-									</h1>
-
-									<h3 class="text-end pt-2">
-										<small>High</small> <span class="temps">3°C</span>
-										<br />
-										<small>Low </small> <span class="temps">-1°C</span>
-									</h3>
-								</div>
-								<br /><br />
-								<div class="d-flex">
-									<div class="flex-grow-1">
-										<p>
-											Mostly Sunny<br />
-											Feels like <span class="temps">2°F</span>
-											<br/>
-											<small
-											><i class="fa-solid fa-umbrella"></i> 1% Chance of
-												Rain</small
-											>
-										</p>
-									</div>
-									<div>
-										<img
-											src="/img/assets/light/partly-sunny.png"
-											width="100px"
-											class="weather-icon"
-										/>
-									</div>
-								</div>
-							</div>
+		<div onclick="tableTab()" class="local-overview col ms-lg-4 mt-4">
+			<!--NODES-->
+                <div class="p-1 mt-3 ">
+	                <div class="d-flex flex-column">
+		                <div class="container global-item">
+			                <div class="row align-items-center">
+				                <h3 class="col text-center">Node1</h3>
+			                </div>
+		                </div>
+		                <hr/>
+		                <div class="container global-item">
+			                <div class="row align-items-center">
+				                <h3 class="col text-center">Node2</h3>
+			                </div>
+		                </div>
+		                <hr/>
+		                <div class="container global-item">
+			                <div class="row align-items-center">
+				                <h3 class="col text-center">Node3</h3>
+			                </div>
+		                </div>
+		                <hr/>
+		                <div class="container global-item">
+			                <div class="row align-items-center">
+				                <h3 class="col text-center">Node4</h3>
+			                </div>
+		                </div>
+		                <hr/>
+		                <div class="container global-item">
+			                <div class="row align-items-center">
+				                <h3 class="col text-center">Node5</h3>
+			                </div>
+		                </div>
+		                <hr/>
+	                </div>
+                </div>
+		</div>
+		<section
+			class="global-overview mx-lg-4 col-xl-3 mt-4 flex-lg-shrink-1 me-lg-0">
+			<!--Options-->
+			<div class="p-1 mt-3">
+				<h2 class="mx-3 mb-2 text-center">Value <strong class="text-center">Options</strong></h2>
+				<hr/>
+				<div class="d-flex flex-column">
+					<div onclick="Temperature() "class="container global-item">
+						<div class="row align-items-center">
+							<h3 class="col text-center">Temperature</h3>
 						</div>
-					</section>
-					<div class="w-100 d-lg-none d-block"></div>
-					<section
-						class="temp-details col-lg-4 col-md-5 mt-3 mt-md-2 mt-lg-0"
-					>
-						<div class="card p-1">
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item d-flex">
-									<strong class="flex-grow-1">Dew Point </strong>
-									<span class="temps">24</span>°<span class="fahrenheit"
-									                              >F
-									</span>
-									<i class="fa-solid fa-droplet align-self-center"></i>
-								</li>
-								<li class="list-group-item d-flex">
-									<strong class="flex-grow-1">Visibility </strong> 10mi
-									<i class="fa-solid fa-eye-slash align-self-center"></i>
-								</li>
-								<li class="list-group-item d-flex">
-									<strong class="flex-grow-1">Wind </strong>10mph
-									<i class="fa-solid fa-wind align-self-center"></i>
-								</li>
-								<li class="list-group-item d-flex">
-									<strong onclick="test()"class="flex-grow-1">Humidity </strong>10%
-									<i class="fa-solid fa-water align-self-center"></i>
-								</li>
-								<li class="list-group-item d-flex">
-									<strong class="flex-grow-1">Precipitation </strong>10%
-									<i class="fa-solid fa-cloud-rain align-self-center"></i>
-								</li>
-							</ul>
+					</div>
+					<hr/>
+					<div onclick="Light()" class="container global-item">
+						<div  class="row align-items-center">
+							<h3 class="col text-center">Light</h3>
 						</div>
-					</section>
-					<div class="w-100 d-md-none d-block"></div>
-					<section class="sun-time col-md mt-3 mt-md-2 mt-lg-0">
-						<div class="card">
-							<img
-								src="/img/assets/night-landscape.png"
-								class="card-img w-100"
-							/>
-							<div class="card-img-overlay text-center">
-								<i class="fa-solid fa-sun"></i>
-								<h3 lass="fw-light">Sunrise</h3>
-								<h2>4:43PM</h2>
-								<br />
-								<i class="fa-solid fa-moon"></i>
-								<h3 lass="fw-lighter">Sunset</h3>
-								<h2>4:43AM</h2>
-							</div>
+					</div>
+					<hr/>
+					<div onclick="Pressure()"  class="container global-item">
+						<div class="row align-items-center">
+							<h3 class="col text-center">Pressure</h3>
 						</div>
-					</section>
+					</div>
+					<hr/>
+					<div onclick="Humidity()" class="container global-item">
+						<div  class="row align-items-center">
+							<h3 class="col text-center">Humidity</h3>
+						</div>
+					</div>
+					<hr/>
 				</div>
 			</div>
-		</div>
-		<div class="w-100 d-lg-none d-block mb-2"></div>
+		</section>
 		<section
-			class="global-overview mx-lg-4 col-xl-3 mt-4 flex-lg-shrink-1 me-lg-0"
-		>
+			class="global-overview mx-lg-4 col-xl-3 mt-4 flex-lg-shrink-1 me-lg-0">
+			<!--Timing options-->
 			<div class="p-1 mt-3">
-				<h2 class="mx-3 mb-2 text-center">Information In Other <strong class="text-center">Locations</strong></h2>
-				<hr />
+				<h2 class="mx-3 mb-2 text-center">Timing <strong class="text-center">options</strong></h2>
+				<hr/>
 				<div class="d-flex flex-column">
 					<div class="container global-item">
-						<div class="row align-items-center">
-							<h3 class="col text-center">Node 1</h3>
+						<div onclick="Hours()" class="row align-items-center">
+							<h3 class="col text-center">Hours</h3>
 						</div>
 					</div>
-					<hr />
+					<hr/>
 					<div class="container global-item">
-						<div class="row align-items-center">
-							<h3 class="col text-center">Node 2</h3>
+						<div onclick="Dates()"class="row align-items-center">
+							<h3 class="col text-center">Dates</h3>
 						</div>
 					</div>
-					<hr />
+					<hr/>
 					<div class="container global-item">
-						<div class="row align-items-center">
-							<h3 class="col text-center">Node 3</h3>
+						<div onclick="Months()" class="row align-items-center">
+							<h3 class="col text-center">Months</h3>
 						</div>
 					</div>
-					<hr />
-					<div class="container global-item">
-						<div class="row align-items-center">
-							<h3 class="col text-center">Node 4</h3>
-						</div>
-					</div>
-					<hr />
-					<div class="container global-item">
-						<div class="row align-items-center">
-							<h3 class="col text-center">Node 5</h3>
-						</div>
-					</div>
+					<hr/>
 				</div>
 			</div>
 		</section>
@@ -179,4 +140,3 @@
 </div>
 
 <script src="/js/button.js"></script>
-<script src="/js/graph.js"></script>
