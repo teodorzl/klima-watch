@@ -30,4 +30,8 @@ public class HomeController : Controller
     {
         return View("Dashboard");
     }
+    public IActionResult Table()
+    {
+        return View("Table");
+    }
 }

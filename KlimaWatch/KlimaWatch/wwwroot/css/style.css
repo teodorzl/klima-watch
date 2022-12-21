@@ -72,14 +72,6 @@ footer i {
     font-size: 16px;
 }
 
-.celsius {
-    padding-left: 3px;
-}
-
-#location {
-    font-weight: bold;
-}
-
 /* THEME TOGGLE SWITCH  */
 
 #flexSwitchCheckChecked {
@@ -110,69 +102,7 @@ footer i {
     background: #fcfcfc;
 }
 
-.weather-icon {
-    filter: drop-shadow(-2px 3px 16px rgba(43, 47, 127, 0.18)) contrast(0.9);
-}
-
-/* LOCAL WEATHER CONTAINER CONTENT */
-
-.daily,
-.card,
-.form-check-input {
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-.current-weather {
-    background: #bfedfb;
-    border-radius: 10px;
-}
-
-.current-weather h1 {
-    font-size: 40px;
-}
-
-.card {
-    min-height: 230px;
-    margin-top: 10px;
-}
-
-.card-img {
-    height: 230px;
-    object-fit: cover;
-    opacity: 0.5;
-}
-
-.card li {
-    font-size: 18px;
-    background: rgba(198, 241, 217, 0.4);
-}
-
-.temp-details i {
-    font-size: 13px;
-    color: rgba(0, 82, 37, 0.798);
-    padding-left: 10px;
-}
-
-.temp-details .card {
-    background: rgba(198, 241, 217, 0.4);
-}
-
-.sun-time i {
-    font-size: 17px;
-    color: #00526beb;
-}
-
-
-/* GLOBAL FORECAST STYLES */
-
-.global-icon {
-    object-fit: contain;
-}
-
-.global-item:hover {
-    background: #e7edfa;
-    border-radius: 4px;
-}
+/* GLOBAL STYLES */
 
 .global-item {
     padding: 12px 4px;
@@ -215,4 +145,21 @@ footer i {
 
 .light-hover:hover {
     background: rgba(149, 205, 236, 0.22);
+}
+
+/* Table Style */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
 }
