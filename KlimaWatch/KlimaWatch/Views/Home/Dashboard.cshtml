@@ -35,108 +35,16 @@
 			</div>
 		</div>
 	</div>
-	<div class="row d-flex">
-		<div onclick="tableTab()" class="local-overview col ms-lg-4 mt-4">
-			<!--NODES-->
-                <div class="p-1 mt-3 ">
-	                <div class="d-flex flex-column">
-		                <div class="container global-item">
-			                <div class="row align-items-center">
-				                <h3 class="col text-center">Node1</h3>
-			                </div>
-		                </div>
-		                <hr/>
-		                <div class="container global-item">
-			                <div class="row align-items-center">
-				                <h3 class="col text-center">Node2</h3>
-			                </div>
-		                </div>
-		                <hr/>
-		                <div class="container global-item">
-			                <div class="row align-items-center">
-				                <h3 class="col text-center">Node3</h3>
-			                </div>
-		                </div>
-		                <hr/>
-		                <div class="container global-item">
-			                <div class="row align-items-center">
-				                <h3 class="col text-center">Node4</h3>
-			                </div>
-		                </div>
-		                <hr/>
-		                <div class="container global-item">
-			                <div class="row align-items-center">
-				                <h3 class="col text-center">Node5</h3>
-			                </div>
-		                </div>
-		                <hr/>
-	                </div>
-                </div>
-		</div>
-		<section
-			class="global-overview mx-lg-4 col-xl-3 mt-4 flex-lg-shrink-1 me-lg-0">
-			<!--Options-->
-			<div class="p-1 mt-3">
-				<h2 class="mx-3 mb-2 text-center">Value <strong class="text-center">Options</strong></h2>
-				<hr/>
-				<div class="d-flex flex-column">
-					<div onclick="Temperature() "class="container global-item">
-						<div class="row align-items-center">
-							<h3 class="col text-center">Temperature</h3>
-						</div>
-					</div>
-					<hr/>
-					<div onclick="Light()" class="container global-item">
-						<div  class="row align-items-center">
-							<h3 class="col text-center">Light</h3>
-						</div>
-					</div>
-					<hr/>
-					<div onclick="Pressure()"  class="container global-item">
-						<div class="row align-items-center">
-							<h3 class="col text-center">Pressure</h3>
-						</div>
-					</div>
-					<hr/>
-					<div onclick="Humidity()" class="container global-item">
-						<div  class="row align-items-center">
-							<h3 class="col text-center">Humidity</h3>
-						</div>
-					</div>
-					<hr/>
-				</div>
-			</div>
-		</section>
-		<section
-			class="global-overview mx-lg-4 col-xl-3 mt-4 flex-lg-shrink-1 me-lg-0">
-			<!--Timing options-->
-			<div class="p-1 mt-3">
-				<h2 class="mx-3 mb-2 text-center">Timing <strong class="text-center">options</strong></h2>
-				<hr/>
-				<div class="d-flex flex-column">
-					<div class="container global-item">
-						<div onclick="Hours()" class="row align-items-center">
-							<h3 class="col text-center">Hours</h3>
-						</div>
-					</div>
-					<hr/>
-					<div class="container global-item">
-						<div onclick="Dates()"class="row align-items-center">
-							<h3 class="col text-center">Dates</h3>
-						</div>
-					</div>
-					<hr/>
-					<div class="container global-item">
-						<div onclick="Months()" class="row align-items-center">
-							<h3 class="col text-center">Months</h3>
-						</div>
-					</div>
-					<hr/>
-				</div>
-			</div>
-		</section>
-		<canvas id="myChart"></canvas>
+	<div class="container">
+		<button onclick="Temperature()" type="button" class="btn btn-info">Temperature</button>
+		<button onclick="Light()" type="button" class="btn btn-info">Light</button>
+		<button onclick="Pressure()" type="button" class="btn btn-info">Pressure</button>
+		<button onclick="Humidity()" type="button" class="btn btn-info">Humidity</button>
+		<button onclick="Hours()" type="button" class="btn btn-dark">Hours</button>
+    	<button onclick="Dates()" type="button" class="btn btn-dark">Dates</button>
+    	<button onclick="Months()" type="button" class="btn btn-dark">Months</button>
 	</div>
+	<canvas id="myChart"></canvas>
 </div>
 
 <script src="/js/button.js"></script>
