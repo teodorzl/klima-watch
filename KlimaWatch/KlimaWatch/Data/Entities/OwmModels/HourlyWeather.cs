@@ -23,6 +23,6 @@ public class HourlyWeather
     [Required] public DateTime Sunset { get; set; }
     [Required] public DateTime Sunrise { get; set; }
 
-    public string DeviceEui { get; set; }
+    public string NodeInfoDeviceEui { get; set; }
     public NodeInfo NodeInfo { get; set; }
 }

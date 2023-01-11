@@ -1,5 +1,6 @@
 using KlimaWatch.Data;
 using KlimaWatch.Services;
+using KlimaWatch.Services.Clients;
 using KlimaWatch.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
