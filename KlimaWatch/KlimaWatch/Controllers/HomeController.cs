@@ -34,4 +34,11 @@ public class HomeController : Controller
     {
         return View("Table");
     }
+
+    public async Task<IActionResult> Example()
+    {
+        var weatherData = await _owmService.GetAllDataAsync();
+
+        return View(weatherData);
+    }
 }

@@ -23,7 +23,7 @@ public class OwmService : BaseService, IOwmService
         if (node == null) throw new ArgumentException("DeviceEUI is invalid");
 
         var latest = await Context.HourlyWeatherSet
-            .Where(hw => hw.DeviceEui == deviceEui)
+            .Where(hw => hw.NodeInfoDeviceEui == deviceEui)
             .OrderBy(hw => hw.Time)
             .FirstOrDefaultAsync();
 
