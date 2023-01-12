@@ -8,6 +8,7 @@ public class KlimaWatchContext : DbContext
 {
     private const string DbConnectionString =
         "Server=database-1.csi7d7eqg3rv.eu-central-1.rds.amazonaws.com;Database=KlimaWatch;User Id=admin;Password=adminadmin;MultipleActiveResultSets=true;Encrypt=False";
+
     public KlimaWatchContext()
     {
     }

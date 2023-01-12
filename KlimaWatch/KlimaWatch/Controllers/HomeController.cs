@@ -35,6 +35,7 @@ public class HomeController : Controller
     public  async Task<IActionResult> Table()
     {
         var weatherDataTable = await _owmService.GetAllDataAsync();
+        
         return View(weatherDataTable);
     }
 }
