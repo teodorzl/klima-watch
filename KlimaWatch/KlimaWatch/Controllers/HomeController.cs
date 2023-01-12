@@ -26,19 +26,16 @@ public class HomeController : Controller
         return View("Team");
     }
 
-    public IActionResult Dashboard()
-    {
-        return View("Dashboard");
-    }
-    public IActionResult Table()
-    {
-        return View("Table");
-    }
-
-    public async Task<IActionResult> Example()
+    public async Task<IActionResult> Dashboard()
     {
         var weatherData = await _owmService.GetAllDataAsync();
-
+        var pyWierden = await _owmService.GetLocalDataBetweenAsync("70B3D549963B71B0", DateTime.MinValue, DateTime.Now);
         return View(weatherData);
+    }
+    public  async Task<IActionResult> Table()
+    {
+        var weatherDataTable = await _owmService.GetAllDataAsync();
+        
+        return View(weatherDataTable);
     }
 }
