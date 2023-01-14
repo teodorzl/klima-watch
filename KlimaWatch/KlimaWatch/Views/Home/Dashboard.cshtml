@@ -49,35 +49,6 @@
 			</div>
 			<canvas id="myChart"></canvas>
 		</div>
-	<script>
-	var pyWierden1_Temperature = [];
-    var pySaxion_Temperature = [];
-    var lhtGronau_Temperature = [];
-    var pyWierden2_Temperature = [];
-	
-	var pyWierden1_Pressure = [];
-	var pySaxion_Pressure = [];
-	var lhtGronau_Pressure = [];
-	var pyWierden2_Pressure = [];
-	
-    var pyWierden1_Humidity = [];
-    var pySaxion_Humidity= [];
-    var lhtGronau_Humidity = [];
-    var pyWierden2_Humidity = [];
-	
- 	var pyWierden1_Visibility = [];
-	var pySaxion_Visibility = [];
-	var lhtGronau_Visibility = [];
-	var pyWierden2_Visibility = [];
-	
-	var pyWierden1_WindSpeed = [];
-    var pySaxion_WindSpeed = [];
-    var lhtGronau_WindSpeed = [];
-    var pyWierden2_WindSpeed = [];
-	
-	var time = [];
-       
-	</script>
 		var pyWierden1_ID = "70B3D549963B71B0";
 		var pySaxion_ID = "70B3D5499ED96FBD";
 		var lhtGronau_ID = "A84041C1818350AD";
@@ -130,31 +101,7 @@
 		<script>
 		window.onload = function (){
 		new Chart("myChart",{type:"line"});
-		Get_pyWierden1_Temperature(pyWierden1_Temperature);
-		Get_pySaxion_Temperature(pySaxion_Temperature);
-		Get_lhtGronau_Temperature(lhtGronau_Temperature);
-		Get_pyWierden2_Temperature(pyWierden1_Temperature);
-		
-		Get_pyWierden1_Pressure(pyWierden1_Pressure);
-		Get_pySaxion_Pressure(pySaxion_Pressure);
-		Get_lhtGronau_Pressure(lhtGronau_Pressure);
-		Get_pyWierden2_Pressure(pyWierden2_Pressure);
-		
-		Get_pyWierden1_Humidity(pyWierden1_Humidity);
-		Get_pySaxion_Humidity(pySaxion_Humidity);
-		Get_lhtGronau_Humidity(lhtGronau_Humidity);
-		Get_pyWierden2_Humidity(pyWierden2_Humidity);
-		
-		Get_pyWierden1_Visibility(pyWierden1_Visibility);
-		Get_pySaxion_Visibility(pySaxion_Visibility);
-		Get_lhtGronau_Visibility(lhtGronau_Visibility);
-		Get_pyWierden2_Visibility(pyWierden2_Visibility);
-		
-		Get_pyWierden1_WindSpeed(pyWierden1_WindSpeed);
-		Get_pySaxion_WindSpeed(pySaxion_WindSpeed);
-		Get_lhtGronau_WindSpeed(lhtGronau_WindSpeed);
-		Get_pyWierden2_WindSpeed(pyWierden2_WindSpeed);
-	}
+		}
 		</script>
 	}
 	<script src="/js/button.js"></script>
