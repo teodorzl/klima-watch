@@ -1,4 +1,5 @@
-﻿using KlimaWatch.Services.Interfaces;
+﻿using KlimaWatch.Models;
+using KlimaWatch.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KlimaWatch.Controllers;
@@ -29,7 +30,6 @@ public class HomeController : Controller
     public async Task<IActionResult> Dashboard()
     {
         var weatherData = await _owmService.GetAllDataAsync();
-        var pyWierden = await _owmService.GetLocalDataBetweenAsync("70B3D549963B71B0", DateTime.MinValue, DateTime.Now);
         return View(weatherData);
     }
     public  async Task<IActionResult> Table()
@@ -38,4 +38,15 @@ public class HomeController : Controller
         
         return View(weatherDataTable);
     }
+    
+    public async Task<IActionResult> NodeTable(string id)
+    {
+        var nodeInfo = await _nodesService.GetNodeDetailsAsync(id);
+        var nodeMessages = await _nodesService.GetMessagesFromNodeAsync(id);
+
+        var model = new NodePageViewModel { NodeInfo = nodeInfo, NodeMessages = nodeMessages };
+        return View(model);
+    }
+
+   
 }
