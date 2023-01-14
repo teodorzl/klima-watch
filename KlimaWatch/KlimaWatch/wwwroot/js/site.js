@@ -93,7 +93,6 @@ function Get_pyWierden2_WindSpeed(arr){
     pyWierden2_WindSpeed = arr;
 }
 //graph
-ValueChecked = 0;
 const yTempMin = 2;
 const yTempMax = 12;
 const yPressureMin = 970;
