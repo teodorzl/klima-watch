@@ -31,69 +31,9 @@ var pySaxion_WindSpeed = [];
 var lhtGronau_WindSpeed = [];
 var pyWierden2_WindSpeed = [];
 
-//get data func
-function Get_pyWierden1_Temperature(arr){
-    pyWierden1_Temperature = arr;
-}
-function Get_pySaxion_Temperature(arr){
-    pySaxion_Temperature = arr;
-}
-function Get_lhtGronau_Temperature(arr){
-    lhtGronau_Temperature = arr;
-}
-function Get_pyWierden2_Temperature(arr){
-    pyWierden2_Temperature = arr;
-}
-function Get_pyWierden1_Pressure(arr){
-    pyWierden1_Pressure = arr;
-}
-function Get_pySaxion_Pressure(arr){
-    pySaxion_Pressure = arr;
-}
-function Get_lhtGronau_Pressure(arr){
-    lhtGronau_Pressure = arr;
-}
-function Get_pyWierden2_Pressure(arr){
-    pyWierden2_Pressure = arr;
-}
-function Get_pyWierden1_Humidity(arr){
-    pyWierden1_Humidity = arr;
-}
-function Get_pySaxion_Humidity(arr){
-    pySaxion_Humidity = arr;
-}
-function Get_lhtGronau_Humidity(arr){
-    lhtGronau_Humidity = arr;
-}
-function Get_pyWierden2_Humidity(arr){
-    pyWierden2_Humidity = arr;
-}
-function Get_pyWierden1_Visibility(arr){
-    pyWierden1_Visibility = arr;
-}
-function Get_pySaxion_Visibility(arr){
-    pySaxion_Visibility = arr;
-}
-function Get_lhtGronau_Visibility(arr){
-    lhtGronau_Visibility = arr;
-}
-function Get_pyWierden2_Visibility(arr){
-    pyWierden2_Visibility = arr;
-}
-function Get_pyWierden1_WindSpeed(arr){
-    pyWierden1_WindSpeed = arr;
-}
-function Get_pySaxion_WindSpeed(arr){
-    pySaxion_WindSpeed = arr;
-}
-function Get_lhtGronau_WindSpeed(arr){
-    lhtGronau_WindSpeed = arr;
-}
-function Get_pyWierden2_WindSpeed(arr){
-    pyWierden2_WindSpeed = arr;
-}
+var time = [];
+
 //graph
-ValueChecked = 0;
 const yTempMin = 2;
 const yTempMax = 12;
 const yPressureMin = 970;
