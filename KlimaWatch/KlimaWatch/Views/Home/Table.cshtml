@@ -42,7 +42,7 @@
                  @foreach (var weather in Model)
                     {
                         <tr>
-                            <td>@weather.Time</td>
+                            <td class="small">@weather.Time</td>
                             <td><a asp-action="NodeTable" asp-route-id="@weather.NodeInfoDeviceEui">@weather.PlaceName</a></td>
                             <td>@weather.WeatherDesc</td>
                             <td>@weather.Temperature</td>
