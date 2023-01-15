@@ -48,50 +48,50 @@
 			</div>
 			<canvas id="myChart"></canvas>
 		</div>
-		var pyWierden1_ID = "70B3D549963B71B0";
-		var pySaxion_ID = "70B3D5499ED96FBD";
-		var lhtGronau_ID = "A84041C1818350AD";
-		var pyWierden2_ID = "A840414E618350B1";
+		var pyWierden1Id = "70B3D549963B71B0";
+		var pySaxionId = "70B3D5499ED96FBD";
+		var lhtGronauId = "A84041C1818350AD";
+		var pyWierden2Id = "A840414E618350B1";
 		@foreach (var weather in Model)
 		{
-			if (weather.NodeInfoDeviceEui == pyWierden1_ID)
+			if (weather.NodeInfoDeviceEui == pyWierden1Id)
 			{
 				<script>
 				pyWierden1_Temperature.push(@weather.Temperature);
 				pyWierden1_Humidity.push(@weather.Humidity);
 				pyWierden1_Pressure.push(@weather.Pressure);
 				time.push('@weather.Time');
-				pyWierden1_Visibility.push(@weather.Visibility);
+				pyWierden1_Visibility.push(Convert_Lux(@weather.Visibility));
 				pyWierden1_WindSpeed.push(@weather.WindSpeed);
 			</script>
 			}
-			if (weather.NodeInfoDeviceEui == pySaxion_ID)
+			if (weather.NodeInfoDeviceEui == pySaxionId)
 			{
 				<script>
 				pySaxion_Temperature.push(@weather.Temperature);
 				pySaxion_Humidity.push(@weather.Humidity);
 				pySaxion_Pressure.push(@weather.Pressure);
-				pySaxion_Visibility.push(@weather.Visibility);
+				pySaxion_Visibility.push(Convert_Lux(@weather.Visibility));
 				pySaxion_WindSpeed.push(@weather.WindSpeed);
 			</script>
 			}
-			if (weather.NodeInfoDeviceEui == lhtGronau_ID)
+			if (weather.NodeInfoDeviceEui == lhtGronauId)
 			{
 				<script>
 				lhtGronau_Temperature.push(@weather.Temperature);
 				lhtGronau_Humidity.push(@weather.Humidity);
 				lhtGronau_Pressure.push(@weather.Pressure);
-				lhtGronau_Visibility.push(@weather.Visibility);
+				lhtGronau_Visibility.push(Convert_Lux(@weather.Visibility));
 				lhtGronau_WindSpeed.push(@weather.WindSpeed);
 			</script>
 			}
-			if (weather.NodeInfoDeviceEui == pyWierden2_ID)
+			if (weather.NodeInfoDeviceEui == pyWierden2Id)
 			{
 				<script>
 				pyWierden2_Temperature.push(@weather.Temperature);
 				pyWierden2_Humidity.push(@weather.Humidity);
 				pyWierden2_Pressure.push(@weather.Pressure);
-				pyWierden2_Visibility.push(@weather.Visibility);
+				pyWierden2_Visibility.push(Convert_Lux(@weather.Visibility));
 				pyWierden2_WindSpeed.push(@weather.WindSpeed);
 			</script>
 			}
