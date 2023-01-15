@@ -34,16 +34,87 @@ var pyWierden2_WindSpeed = [];
 var time = [];
 
 //graph
-const yTempMin = 2;
-const yTempMax = 12;
-const yPressureMin = 970;
-const yPressureMax = 1040;
-const yHumidityMin = 50;
-const yVisibilityMax = 11000;
-const yVisibilityMin = 6000;
-const yWindSpeedMax = 15;
-const yWindSpeedMin = 0.20;
-const yHumidityMax = 110;
+var Max_Min_Temperature = [];
+var Max_Min_Pressure = [];
+var Max_Min_Humidity = [];
+var Max_Min_Visibility = [];
+var Max_WindSpeed = [];
+var yTempMin;
+var yTempMax;
+var yPressureMin;
+var yPressureMax;
+
+var yHumidityMin;
+var yHumidityMax;
+
+var yVisibilityMax;
+var yVisibilityMin;
+
+var yWindSpeedMax;
+const yWindSpeedMin = -1;
+
+function Get_Temp_Max_Min(max,min){
+    yTempMax = max + 3;
+    yTempMin = min - 3;
+}
+function Get_Pressure_Max_Min(max,min){
+    yPressureMax = max + 30;
+    yPressureMin = min - 30;
+}
+function Get_Humidity_Max_Min(max,min){
+    yHumidityMax = max + 30;
+    yHumidityMin = min - 30;
+}
+function Get_Visibility_Max_Min(max,min){
+    yVisibilityMax = max + 200;
+    yVisibilityMin = min - 200;
+}
+function Get_WindSpeed_Max(max){
+    yWindSpeedMax = max + 3;
+}
+function Get_All_Max_Min_YAsis_Value(){
+    Max_Min_Temperature.push(Math.max(...pyWierden1_Temperature));
+    Max_Min_Temperature.push(Math.min(...pyWierden1_Temperature));
+    Max_Min_Temperature.push(Math.max(...pySaxion_Temperature));
+    Max_Min_Temperature.push(Math.min(...pySaxion_Temperature));
+    Max_Min_Temperature.push(Math.max(...lhtGronau_Temperature));
+    Max_Min_Temperature.push(Math.min(...lhtGronau_Temperature));
+    Max_Min_Temperature.push(Math.max(...pyWierden2_Temperature));
+    Max_Min_Temperature.push(Math.min(...pyWierden2_Temperature));
+    Get_Temp_Max_Min(Math.max(...Max_Min_Temperature),Math.min(...Max_Min_Temperature));
+    Max_Min_Pressure.push(Math.max(...pyWierden1_Pressure));
+    Max_Min_Pressure.push(Math.min(...pyWierden1_Pressure));
+    Max_Min_Pressure.push(Math.max(...pySaxion_Pressure));
+    Max_Min_Pressure.push(Math.min(...pySaxion_Pressure));
+    Max_Min_Pressure.push(Math.max(...lhtGronau_Pressure));
+    Max_Min_Pressure.push(Math.min(...lhtGronau_Pressure));
+    Max_Min_Pressure.push(Math.max(...pyWierden2_Pressure));
+    Max_Min_Pressure.push(Math.min(...pyWierden2_Pressure));
+    Get_Pressure_Max_Min(Math.max(...Max_Min_Pressure),Math.min(...Max_Min_Pressure));
+    Max_Min_Humidity.push(Math.max(...pyWierden1_Humidity));
+    Max_Min_Humidity.push(Math.min(...pyWierden1_Humidity));
+    Max_Min_Humidity.push(Math.max(...pySaxion_Humidity));
+    Max_Min_Humidity.push(Math.min(...pySaxion_Humidity));
+    Max_Min_Humidity.push(Math.max(...lhtGronau_Humidity));
+    Max_Min_Humidity.push(Math.min(...lhtGronau_Humidity));
+    Max_Min_Humidity.push(Math.max(...pyWierden2_Humidity));
+    Max_Min_Humidity.push(Math.min(...pyWierden2_Humidity));
+    Get_Humidity_Max_Min(Math.max(...Max_Min_Humidity),Math.min(...Max_Min_Humidity));
+    Max_Min_Visibility.push(Math.max(...pyWierden1_Visibility));
+    Max_Min_Visibility.push(Math.min(...pyWierden1_Visibility));
+    Max_Min_Visibility.push(Math.max(...pySaxion_Visibility));
+    Max_Min_Visibility.push(Math.min(...pySaxion_Visibility));
+    Max_Min_Visibility.push(Math.max(...lhtGronau_Visibility));
+    Max_Min_Visibility.push(Math.min(...lhtGronau_Visibility));
+    Max_Min_Visibility.push(Math.max(...pyWierden2_Visibility));
+    Max_Min_Visibility.push(Math.min(...pyWierden2_Visibility));
+    Get_Visibility_Max_Min(Math.max(...Max_Min_Visibility),Math.min(...Max_Min_Visibility));
+    Max_WindSpeed.push(Math.max(...pyWierden1_WindSpeed));
+    Max_WindSpeed.push(Math.min(...pyWierden1_WindSpeed));
+    Max_WindSpeed.push(Math.max(...pySaxion_WindSpeed));
+    Max_WindSpeed.push(Math.min(...pySaxion_WindSpeed));
+    Get_WindSpeed_Max(Math.max(...Max_WindSpeed),Math.min(...Max_WindSpeed));
+}
 var myChart = new Chart("myChart",{type:"line"});
 function Temperature(){
     Make_Temperature_Graph(pyWierden1_Temperature,pySaxion_Temperature,lhtGronau_Temperature,pyWierden2_Temperature,yTempMin,yTempMax);
