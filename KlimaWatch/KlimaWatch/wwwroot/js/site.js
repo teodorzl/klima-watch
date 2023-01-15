@@ -6,31 +6,32 @@ function teamButton() {
 }
 
 //data var
-const pyWierden1_Temperature = [];
+
+const pyWierden_Temperature = [];
 const pySaxion_Temperature = [];
 const lhtGronau_Temperature = [];
-const pyWierden2_Temperature = [];
+const lhtWierden_Temperature = [];
 
-const pyWierden1_Pressure = [];
+const pyWierden_Pressure = [];
 const pySaxion_Pressure = [];
 const lhtGronau_Pressure = [];
-const pyWierden2_Pressure = [];
+const lhtWierden_Pressure = [];
 
-const pyWierden1_Humidity = [];
+const pyWierden_Humidity = [];
 const pySaxion_Humidity= [];
 const lhtGronau_Humidity = [];
-const pyWierden2_Humidity = [];
+const lhtWierden_Humidity = [];
 
-const pyWierden1_Visibility = [];
+const pyWierden_Visibility = [];
 const pySaxion_Visibility = [];
 const lhtGronau_Visibility = [];
-const pyWierden2_Visibility = [];
+const lhtWierden_Visibility = [];
 
 
-const pyWierden1_WindSpeed = [];
+const pyWierden_WindSpeed = [];
 const pySaxion_WindSpeed = [];
 const lhtGronau_WindSpeed = [];
-const pyWierden2_WindSpeed = [];
+const lhtWierden_WindSpeed = [];
 
 const time = [];
 
@@ -55,18 +56,12 @@ let yVisibilityMin;
 let yWindSpeedMax;
 const yWindSpeedMin = -1;
 
-const label1 = 'pyWierden 1';
+const label1 = 'pyWierden';
 const label2 = 'pySaxion';
 const label3 = 'lhtGronau';
-const label4 = 'pyWierden 2';
+const label4 = 'lhtWierden';
 
 let myChart = new Chart("myChart", {type: "line"});
-
-function Convert_Lux(lux){
-    const maxValue = 65000;
-    const onePercent = maxValue/100;
-    return Math.round(((((onePercent/lux)*100) + Number.EPSILON) * 100) / 100);
-}
 
 function Get_Temp_Max_Min(max,min){
     yTempMax = Math.round(max + 3);
@@ -84,76 +79,76 @@ function Get_WindSpeed_Max(max){
     yWindSpeedMax = Math.round(max + 3);
 }
 function Get_Visibility_Max_Min(max,min){
-    yVisibilityMax = max + 1;
-    yVisibilityMin = min - 3;
+    yVisibilityMax = Math.round(max + 1000);
+    yVisibilityMin = Math.round(min - 1000);
 }
 
 function Get_All_Max_Min_YAsis_Value(){
-    Max_Min_Temperature.push(Math.max(...pyWierden1_Temperature));
-    Max_Min_Temperature.push(Math.min(...pyWierden1_Temperature));
+    Max_Min_Temperature.push(Math.max(...pyWierden_Temperature));
+    Max_Min_Temperature.push(Math.min(...pyWierden_Temperature));
     Max_Min_Temperature.push(Math.max(...pySaxion_Temperature));
     Max_Min_Temperature.push(Math.min(...pySaxion_Temperature));
     Max_Min_Temperature.push(Math.max(...lhtGronau_Temperature));
     Max_Min_Temperature.push(Math.min(...lhtGronau_Temperature));
-    Max_Min_Temperature.push(Math.max(...pyWierden2_Temperature));
-    Max_Min_Temperature.push(Math.min(...pyWierden2_Temperature));
+    Max_Min_Temperature.push(Math.max(...lhtWierden_Temperature));
+    Max_Min_Temperature.push(Math.min(...lhtWierden_Temperature));
     Get_Temp_Max_Min(Math.max(...Max_Min_Temperature),Math.min(...Max_Min_Temperature));
     
-    Max_Min_Pressure.push(Math.max(...pyWierden1_Pressure));
-    Max_Min_Pressure.push(Math.min(...pyWierden1_Pressure));
+    Max_Min_Pressure.push(Math.max(...pyWierden_Pressure));
+    Max_Min_Pressure.push(Math.min(...pyWierden_Pressure));
     Max_Min_Pressure.push(Math.max(...pySaxion_Pressure));
     Max_Min_Pressure.push(Math.min(...pySaxion_Pressure));
     Max_Min_Pressure.push(Math.max(...lhtGronau_Pressure));
     Max_Min_Pressure.push(Math.min(...lhtGronau_Pressure));
-    Max_Min_Pressure.push(Math.max(...pyWierden2_Pressure));
-    Max_Min_Pressure.push(Math.min(...pyWierden2_Pressure));
+    Max_Min_Pressure.push(Math.max(...lhtWierden_Pressure));
+    Max_Min_Pressure.push(Math.min(...lhtWierden_Pressure));
     Get_Pressure_Max_Min(Math.max(...Max_Min_Pressure),Math.min(...Max_Min_Pressure));
     
-    Max_Min_Humidity.push(Math.max(...pyWierden1_Humidity));
-    Max_Min_Humidity.push(Math.min(...pyWierden1_Humidity));
+    Max_Min_Humidity.push(Math.max(...pyWierden_Humidity));
+    Max_Min_Humidity.push(Math.min(...pyWierden_Humidity));
     Max_Min_Humidity.push(Math.max(...pySaxion_Humidity));
     Max_Min_Humidity.push(Math.min(...pySaxion_Humidity));
     Max_Min_Humidity.push(Math.max(...lhtGronau_Humidity));
     Max_Min_Humidity.push(Math.min(...lhtGronau_Humidity));
-    Max_Min_Humidity.push(Math.max(...pyWierden2_Humidity));
-    Max_Min_Humidity.push(Math.min(...pyWierden2_Humidity));
+    Max_Min_Humidity.push(Math.max(...lhtWierden_Humidity));
+    Max_Min_Humidity.push(Math.min(...lhtWierden_Humidity));
     Get_Humidity_Max_Min(Math.max(...Max_Min_Humidity),Math.min(...Max_Min_Humidity));
     
-    Max_WindSpeed.push(Math.max(...pyWierden1_WindSpeed));
-    Max_WindSpeed.push(Math.min(...pyWierden1_WindSpeed));
+    Max_WindSpeed.push(Math.max(...pyWierden_WindSpeed));
+    Max_WindSpeed.push(Math.min(...pyWierden_WindSpeed));
     Max_WindSpeed.push(Math.max(...pySaxion_WindSpeed));
     Max_WindSpeed.push(Math.min(...pySaxion_WindSpeed));
     Max_WindSpeed.push(Math.max(...lhtGronau_WindSpeed));
     Max_WindSpeed.push(Math.min(...lhtGronau_WindSpeed));
-    Max_WindSpeed.push(Math.max(...pyWierden2_WindSpeed));
-    Max_WindSpeed.push(Math.min(...pyWierden2_WindSpeed));
+    Max_WindSpeed.push(Math.max(...lhtWierden_WindSpeed));
+    Max_WindSpeed.push(Math.min(...lhtWierden_WindSpeed));
     Get_WindSpeed_Max(Math.max(...Max_WindSpeed),Math.min(...Max_WindSpeed));
 
-    Max_Min_Visibility.push(Math.max(...pyWierden1_Visibility));
-    Max_Min_Visibility.push(Math.min(...pyWierden1_Visibility));
+    Max_Min_Visibility.push(Math.max(...pyWierden_Visibility));
+    Max_Min_Visibility.push(Math.min(...pyWierden_Visibility));
     Max_Min_Visibility.push(Math.max(...pySaxion_Visibility));
     Max_Min_Visibility.push(Math.min(...pySaxion_Visibility));
     Max_Min_Visibility.push(Math.max(...lhtGronau_Visibility));
     Max_Min_Visibility.push(Math.min(...lhtGronau_Visibility));
-    Max_Min_Visibility.push(Math.max(...pyWierden2_Visibility));
-    Max_Min_Visibility.push(Math.min(...pyWierden2_Visibility));
+    Max_Min_Visibility.push(Math.max(...lhtWierden_Visibility));
+    Max_Min_Visibility.push(Math.min(...lhtWierden_Visibility));
     Get_Visibility_Max_Min(Math.max(...Max_Min_Visibility),Math.min(...Max_Min_Visibility));
 }
 
 function Temperature(){
-    Make_Graph(pyWierden1_Temperature,pySaxion_Temperature,lhtGronau_Temperature,pyWierden2_Temperature,'Temperature','C Degree',yTempMin,yTempMax);
+    Make_Graph(pyWierden_Temperature,pySaxion_Temperature,lhtGronau_Temperature,lhtWierden_Temperature,'Temperature','C Degree',yTempMin,yTempMax);
 }
 function Pressure(){
-    Make_Graph(pyWierden1_Pressure,pySaxion_Pressure,lhtGronau_Pressure,pyWierden2_Pressure,'Pressure','Pressure (hPa)',yPressureMin,yPressureMax);
+    Make_Graph(pyWierden_Pressure,pySaxion_Pressure,lhtGronau_Pressure,lhtWierden_Pressure,'Pressure','Pressure (hPa)',yPressureMin,yPressureMax);
 }
 function Humidity(){
-    Make_Graph(pyWierden1_Humidity,pySaxion_Humidity,lhtGronau_Humidity,pyWierden2_Humidity,'Humidity','Relative Humidity %',yHumidityMin,yHumidityMax);
+    Make_Graph(pyWierden_Humidity,pySaxion_Humidity,lhtGronau_Humidity,lhtWierden_Humidity,'Humidity','Relative Humidity %',yHumidityMin,yHumidityMax);
 }
-function Light(){
-    Make_Graph(pyWierden1_Visibility,pySaxion_Visibility,lhtGronau_Visibility,pyWierden2_Visibility,'Visibility', 'Percentage %',yVisibilityMin,yVisibilityMax);
+function Visibility(){
+    Make_Graph(pyWierden_Visibility,pySaxion_Visibility,lhtGronau_Visibility,lhtWierden_Visibility,'Visibility', 'Meter',yVisibilityMin,yVisibilityMax);
 }
 function WindSpeed(){
-    Make_Graph(pyWierden1_WindSpeed,pySaxion_WindSpeed,lhtGronau_WindSpeed,pyWierden2_WindSpeed,'WindSpeed','Metres per second (m/s)',yWindSpeedMin,yWindSpeedMax);
+    Make_Graph(pyWierden_WindSpeed,pySaxion_WindSpeed,lhtGronau_WindSpeed,lhtWierden_WindSpeed,'WindSpeed','Metres per second (m/s)',yWindSpeedMin,yWindSpeedMax);
 }
 function Make_Graph(data1, data2, data3, data4,optionText,labelString,yMin,yMax) {
     myChart.destroy();
@@ -210,5 +205,4 @@ function Make_Graph(data1, data2, data3, data4,optionText,labelString,yMin,yMax)
         }
     });
 }
-
 
