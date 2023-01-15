@@ -16,6 +16,26 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    double LuxPercentage(double lux)
+    {
+        var maxValue = 255;
+        var onePercentage = maxValue / 100;
+        return Math.Round(lux/onePercentage);
+    };
+
+    double ConvertLux(double lux)
+    {
+        if(lux < 123)
+            return lux;
+        else{
+            lux = (Math.Log(lux,1.04));
+            if(lux > 255){
+                return 255;
+            }return lux;
+        }
+        
+    }
+    
     <div class="container">
         <h1 class="text-center">@Model.NodeInfo.DeviceName</h1>
 
@@ -58,10 +78,9 @@
                 else
                 {
                     <th class="fw-bold">Indoor Temp</th>
-                    <th class="fw-bold">Outdoor Temp</th>
                     <th class="fw-bold">Humidity</th>
                     <th class="fw-bold">Battery Voltage</th>
-                    <th class="fw-bold">Illumination</th>
+                    <th class="fw-bold">Light</th>
                 }
             </tr>
             </thead>
@@ -74,26 +93,27 @@
                     @if (Model.NodeInfo.SensorType == SensorType.Indoor)
                     {
                         var indoorMessage = message as IndoorNodeMessage;
-                    
-                        <td>@indoorMessage?.Temperature</td>
-                        <td>@indoorMessage?.Light</td>
-                        <td>@indoorMessage?.Pressure</td>
+                        <td>@indoorMessage?.Temperature °C</td>
+                        <td>@LuxPercentage((double)indoorMessage?.Light)%</td>
+                        <td>@indoorMessage?.Pressure Pa</td>
                     }
                     else
                     {
                         var outdoorMessage = message as OutdoorNodeMessage;
-
-                        <td>@outdoorMessage?.IndoorTemp</td>
-                        <td>@outdoorMessage?.OutdoorTemp</td>
-                        <td>@outdoorMessage?.Humidity</td>
-                        <td>@outdoorMessage?.BatteryVoltage</td>
-                        <td>@outdoorMessage?.Illumination</td>
+                        var luxConverted = LuxPercentage(ConvertLux((double)outdoorMessage?.Illumination));
+                        <td>@outdoorMessage?.IndoorTemp °C</td>
+                        <td>@outdoorMessage?.Humidity %rh</td>
+                        <td>@outdoorMessage?.BatteryVoltage V</td>
+                        <td>@luxConverted %</td>
+                            
                     }
                 </tr>
             }
             </tbody>
         </table>
     </div>
+
+    
     <script>
         $('#nodeTable').DataTable();
     </script>
