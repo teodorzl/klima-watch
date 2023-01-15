@@ -52,6 +52,10 @@ var yVisibilityMin;
 
 var yWindSpeedMax;
 const yWindSpeedMin = -1;
+var label1 = 'pyWierden 1';
+var label2 = 'pySaxion';
+var label3 = 'lhtGronau';
+var label4 = 'pyWierden 2';
 
 function Get_Temp_Max_Min(max,min){
     yTempMax = max + 3;
@@ -117,52 +121,52 @@ function Get_All_Max_Min_YAsis_Value(){
 }
 var myChart = new Chart("myChart",{type:"line"});
 function Temperature(){
-    Make_Temperature_Graph(pyWierden1_Temperature,pySaxion_Temperature,lhtGronau_Temperature,pyWierden2_Temperature,yTempMin,yTempMax);
+    Make_Graph(pyWierden1_Temperature,pySaxion_Temperature,lhtGronau_Temperature,pyWierden2_Temperature,'Temperature','C Degree',yTempMin,yTempMax);
 }
 function Pressure(){
-    Make_Pressure_Graph(pyWierden1_Pressure,pySaxion_Pressure,lhtGronau_Pressure,pyWierden2_Pressure,yPressureMin,yPressureMax);
+    Make_Graph(pyWierden1_Pressure,pySaxion_Pressure,lhtGronau_Pressure,pyWierden2_Pressure,'Pressure','Pressure (hPa)',yPressureMin,yPressureMax);
 }
 function Humidity(){
-    Make_Humidity_Graph(pyWierden1_Humidity,pySaxion_Humidity,lhtGronau_Humidity,pyWierden2_Humidity);
+    Make_Graph(pyWierden1_Humidity,pySaxion_Humidity,lhtGronau_Humidity,pyWierden2_Humidity,'Humidity','Relative Humidity %',yHumidityMin,yHumidityMax);
 }
 function Light(){
-    Make_Light_Graph(pyWierden1_Visibility,pySaxion_Visibility,lhtGronau_Visibility,pyWierden2_Visibility);
+    Make_Graph(pyWierden1_Visibility,pySaxion_Visibility,lhtGronau_Visibility,pyWierden2_Visibility,'Visibility', 'Light value',yVisibilityMin,yVisibilityMax);
 }
 function WindSpeed(){
-    Make_WindSpeed_Graph(pyWierden1_WindSpeed,pySaxion_WindSpeed,lhtGronau_WindSpeed,pyWierden2_WindSpeed);
+    Make_Graph(pyWierden1_WindSpeed,pySaxion_WindSpeed,lhtGronau_WindSpeed,pyWierden2_WindSpeed,'WindSpeed','Metres per second (m/s)',yWindSpeedMin,yWindSpeedMax);
 }
-function Make_Temperature_Graph(pyWierden1_Temperature,pySaxion_Temperature,lhtGronau_Temperature,pyWierden2_Temperature) {
+function Make_Graph(data1, data2, data3, data4,optionText,labelString,yMin,yMax) {
     myChart.destroy();
     myChart = new Chart("myChart", {
         type: "line",
         data: {
             labels: time,
             datasets: [{
-                data: pyWierden1_Temperature,
+                data: data1,
                 borderColor: "red",
                 fill: false,
-                label: 'pyWierden 1'
+                label: label1
             }, {
-                data: pySaxion_Temperature,
+                data: data2,
                 borderColor: "green",
                 fill: false,
-                label: 'pySaxion '
+                label: label2
             }, {
-                data: lhtGronau_Temperature,
+                data: data3,
                 borderColor: "blue",
                 fill: false,
-                label: 'lhtGronau'
+                label: label3
             },{
-                data: pyWierden2_Temperature,
+                data: data4,
                 borderColor: "yellow",
                 fill: false,
-                label: 'pyWierden 2'
+                label: label4
             }]
         },
         options: {
             title: {
                 display: true,
-                text: 'Temperature'
+                text: optionText
             },
             legend: {display: true},
             scales: {
@@ -174,231 +178,11 @@ function Make_Temperature_Graph(pyWierden1_Temperature,pySaxion_Temperature,lhtG
                     }
                 }],
                 yAxes: [{
-                    ticks: {min: yTempMin, max: yTempMax},
+                    ticks: {min: yMin, max: yMax},
                     display: true,
                     scaleLabel: {
                         display: true,
-                        labelString: 'C Degree'
-                    }
-                }]
-
-            }
-        }
-    });
-}
-function Make_Pressure_Graph(pyWierden1_Pressure,pySaxion_Pressure,lhtGronau_Pressure,pyWierden2_Pressure){
-    myChart.destroy();
-    myChart = new Chart("myChart", {
-        type: "line",
-        data: {
-            labels: time,
-            datasets: [{
-                data: pyWierden1_Pressure,
-                borderColor: "red",
-                fill: false,
-                label: 'pyWierden 1'
-            }, {
-                data: pySaxion_Pressure,
-                borderColor: "green",
-                fill: false,
-                label: 'pySaxion '
-            }, {
-                data: lhtGronau_Pressure,
-                borderColor: "blue",
-                fill: false,
-                label: 'lhtGronau'
-            },{
-                data: pyWierden2_Pressure,
-                borderColor: "yellow",
-                fill: false,
-                label: 'pyWierden 2'
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Pressure'
-            },
-            legend: {display: true},
-            scales: {
-                xAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Time'
-                    }
-                }],
-                yAxes: [{
-                    ticks: {min: yPressureMin, max: yPressureMax},
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Pressure (hPa)'
-                    }
-                }]
-
-            }
-        }
-    });
-}
-function Make_Humidity_Graph(pyWierden1_Humidity,pySaxion_Humidity,lhtGronau_Humidity,pyWierden2_Humidity){
-    myChart.destroy();
-    myChart = new Chart("myChart", {
-        type: "line",
-        data: {
-            labels: time,
-            datasets: [{
-                data: pyWierden1_Humidity,
-                borderColor: "red",
-                fill: false,
-                label: 'pyWierden 1'
-            }, {
-                data: pySaxion_Humidity,
-                borderColor: "green",
-                fill: false,
-                label: 'pySaxion '
-            }, {
-                data: lhtGronau_Humidity,
-                borderColor: "blue",
-                fill: false,
-                label: 'lhtGronau'
-            },{
-                data: pyWierden2_Humidity,
-                borderColor: "yellow",
-                fill: false,
-                label: 'pyWierden 2'
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Humidity'
-            },
-            legend: {display: true},
-            scales: {
-                xAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Time'
-                    }
-                }],
-                yAxes: [{
-                    ticks: {min: yHumidityMin, max: yHumidityMax},
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Relative Humidity %'
-                    }
-                }]
-
-            }
-        }
-    });
-}
-function Make_Light_Graph(pyWierden1_Visibility,pySaxion_Visibility,lhtGronau_Visibility,pyWierden2_Visibility){
-    myChart.destroy();
-    myChart = new Chart("myChart", {
-        type: "line",
-        data: {
-            labels: time,
-            datasets: [{
-                data: pyWierden1_Visibility,
-                borderColor: "red",
-                fill: false,
-                label: 'pyWierden 1'
-            }, {
-                data: pySaxion_Visibility,
-                borderColor: "green",
-                fill: false,
-                label: 'pySaxion '
-            }, {
-                data: lhtGronau_Visibility,
-                borderColor: "blue",
-                fill: false,
-                label: 'lhtGronau'
-            },{
-                data: pyWierden2_Visibility,
-                borderColor: "yellow",
-                fill: false,
-                label: 'pyWierden 2'
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'Visibility'
-            },
-            legend: {display: true},
-            scales: {
-                xAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Time'
-                    }
-                }],
-                yAxes: [{
-                    ticks: {min: yVisibilityMin, max: yVisibilityMax},
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Light value'
-                    }
-                }]
-
-            }
-        }
-    });
-}
-function Make_WindSpeed_Graph(pyWierden1_WindSpeed, pySaxion_WindSpeed, lhtGronau_WindSpeed, pyWierden2_WindSpeed) {
-    myChart.destroy();
-    myChart = new Chart("myChart", {
-        type: "line",
-        data: {
-            labels: time,
-            datasets: [{
-                data: pyWierden1_WindSpeed,
-                borderColor: "red",
-                fill: false,
-                label: 'pyWierden 1'
-            }, {
-                data: pySaxion_WindSpeed,
-                borderColor: "green",
-                fill: false,
-                label: 'pySaxion '
-            }, {
-                data: lhtGronau_WindSpeed,
-                borderColor: "blue",
-                fill: false,
-                label: 'lhtGronau'
-            },{
-                data: pyWierden2_WindSpeed,
-                borderColor: "yellow",
-                fill: false,
-                label: 'pyWierden 2'
-            }]
-        },
-        options: {
-            title: {
-                display: true,
-                text: 'WindSpeed'
-            },
-            legend: {display: true},
-            scales: {
-                xAxes: [{
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Time'
-                    }
-                }],
-                yAxes: [{
-                    ticks: {min: yWindSpeedMin, max: yWindSpeedMax},
-                    display: true,
-                    scaleLabel: {
-                        display: true,
-                        labelString: 'Metres per second (m/s)'
+                        labelString: labelString
                     }
                 }]
 
