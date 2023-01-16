@@ -5,6 +5,7 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
         rel="stylesheet"/>
     <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/loading.css" rel="stylesheet" type="text/css"/>
     <script
         src="https://kit.fontawesome.com/50cde61edc.js"
         crossorigin="anonymous"></script>
@@ -14,16 +15,17 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-    
+    <script src="/js/loading.js"></script>
+    <span class="loader" id="loader"></span>
     @if (Model.Count == 0)
     {
         <h1 class="text-center text-secondary">No weather data :(, wait for a few hours :)</h1>
     }
     else
     {
-        <div class="container">
+        <div class="container" id="table" hidden>
             <h1> Statistical Table </h1>
-            <table class="table table-hover table-bordered auto-datatable text-center" id="sortTable">
+            <table class="table table-hover table-bordered auto-datatable text-center" id="tableData" >
              <thead>
                  <tr>
                      <th class="fw-bold">Time</th>
@@ -58,7 +60,11 @@
             </table>
         </div>
         <script>
-            $('#sortTable').DataTable();
+        window.onload = function (){
+              Loading_Loop();
+         }
+        Display();
+        $('#tableData').DataTable();
         </script>
     }
 }

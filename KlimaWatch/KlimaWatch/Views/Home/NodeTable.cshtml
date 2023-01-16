@@ -7,6 +7,7 @@
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
         rel="stylesheet"/>
     <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/loading.css" rel="stylesheet" type="text/css"/>
     <script
         src="https://kit.fontawesome.com/50cde61edc.js"
         crossorigin="anonymous"></script>
@@ -16,15 +17,15 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/js/loading.js"></script>
+    <span class="loader" id="loader"></span>
     double LuxPercentage(double lux)
     {
         var maxValue = 255;
         var onePercentage = maxValue / 100;
         return Math.Round(lux/onePercentage);
     };
-
-    double ConvertLux(double lux)
-    {
+    double ConvertLux(double lux){
         if(lux < 123)
             return lux;
         else{
@@ -35,8 +36,8 @@
         }
         
     }
-    
-    <div class="container">
+  
+    <div class="container" id ="table" hidden>
         <h1 class="text-center">@Model.NodeInfo.DeviceName</h1>
 
         <table class="table table-hover table-bordered auto-datatable text-center">
@@ -63,7 +64,6 @@
             </tr>
             </tbody>
         </table>
-
         <table class="table table-hover table-bordered auto-datatable text-center" id="nodeTable">
             <thead>
             <tr>
@@ -105,16 +105,19 @@
                         <td>@outdoorMessage?.Humidity %rh</td>
                         <td>@outdoorMessage?.BatteryVoltage V</td>
                         <td>@luxConverted %</td>
-                            
                     }
                 </tr>
             }
             </tbody>
         </table>
     </div>
-
-    
     <script>
-        $('#nodeTable').DataTable();
+     window.onload = function (){
+          Loading_Loop();
+     }
+    Display();
+    $('#nodeTable').DataTable();
+    
+   
     </script>
 }

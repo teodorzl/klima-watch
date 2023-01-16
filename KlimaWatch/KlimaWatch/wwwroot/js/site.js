@@ -1,12 +1,4 @@
-﻿function homeButton() {
-    location.href = '/home/Dashboard';
-}
-function teamButton() {
-    location.href = '/home/Team';
-}
-
-//data var
-
+﻿//data 
 const pyWierden_Temperature = [];
 const pySaxion_Temperature = [];
 const lhtGronau_Temperature = [];
