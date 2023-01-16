@@ -6,8 +6,9 @@ namespace KlimaWatch.Data;
 
 public class KlimaWatchContext : DbContext
 {
-    private const string DbConnectionString =
-        "Server=database-1.csi7d7eqg3rv.eu-central-1.rds.amazonaws.com;Database=KlimaWatch;User Id=admin;Password=adminadmin;MultipleActiveResultSets=true;Encrypt=False";
+    private const string DbConnectionString = "Server=database-1.csi7d7eqg3rv.eu-central-1.rds.amazonaws.com;Database=KlimaWatch;User Id=admin;Password=adminadmin;MultipleActiveResultSets=true;Encrypt=False";
+
+    // private const string LocalConnection = "Server=localhost;Database=KlimaWatch;User Id=sa;Password=5gwMHwOZfrmmPsIFBwqUIh3RdTfSamDq;MultipleActiveResultSets=true;Encrypt=False";
 
     public KlimaWatchContext()
     {
