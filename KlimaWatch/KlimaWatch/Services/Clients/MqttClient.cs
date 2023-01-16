@@ -10,75 +10,107 @@ namespace KlimaWatch.Services;
 
 public static class MqttClient
 {
-    private const string Host = "eu1.cloud.thethings.network";
-    private const string Name = "project-software-engineering@ttn";
+    private static readonly KlimaWatchContext Context = new();
+    private const string Host1 = "eu1.cloud.thethings.network";
+    private const string Name1 = "project-software-engineering@ttn";
 
-    private const string Pass =
+    private const string Pass1 =
         "NNSXS.DTT4HTNBXEQDZ4QYU6SG73Q2OXCERCZ6574RVXI.CQE6IG6FYNJOO2MOFMXZVWZE4GXTCC2YXNQNFDLQL4APZMWU6ZGA";
+
+    private const string Host2 = "eu1.cloud.thethings.network";
+    private const string Name2 = "fipy-test-1@ttn";
+
+    private const string Pass2 =
+        "NNSXS.XVHEOFDCE637C55TH7EFD4PCHI2ECV2JP2BHYSY.BRQEGGHWL6J6QPJ77ZCW32SETIN3EC2NJYGYWO3JR5WIKI4DJ4EA";
 
     public static async Task ConnectClient()
     {
         var mqttFactory = new MqttFactory();
 
-        var context = new KlimaWatchContext();
+        var mqttClient1 = mqttFactory.CreateMqttClient();
+        var mqttClient2 = mqttFactory.CreateMqttClient();
 
-        var mqttClient = mqttFactory.CreateMqttClient();
-        var mqttClientOptions = new MqttClientOptionsBuilder()
-            .WithTcpServer(Host)
-            .WithCredentials(Name, Pass)
+        var mqttClientOptions1 = new MqttClientOptionsBuilder()
+            .WithTcpServer(Host1)
+            .WithCredentials(Name1, Pass1)
             .WithTls()
             .WithCleanSession()
             .Build();
 
-        await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
-        Console.WriteLine("Connected to " + Host);
+        var mqttClientOptions2 = new MqttClientOptionsBuilder()
+            .WithTcpServer(Host2)
+            .WithCredentials(Name2, Pass2)
+            .WithTls()
+            .WithCleanSession()
+            .Build();
 
-        var subOptions = mqttFactory.CreateSubscribeOptionsBuilder()
+        await mqttClient1.ConnectAsync(mqttClientOptions1, CancellationToken.None);
+        Console.WriteLine("Connected to " + Name1);
+        await mqttClient2.ConnectAsync(mqttClientOptions2, CancellationToken.None);
+        Console.WriteLine("Connected to " + Name2);
+
+        var subOptions1 = mqttFactory.CreateSubscribeOptionsBuilder()
             .WithTopicFilter(f => f.WithTopic("v3/project-software-engineering@ttn/devices/py-wierden/up"))
             .WithTopicFilter(f => f.WithTopic("v3/project-software-engineering@ttn/devices/py-saxion/up"))
-            .WithTopicFilter(f => f.WithTopic("v3/project-software-engineering@ttn/devices/lht-saxon/up"))
+            .WithTopicFilter(f => f.WithTopic("v3/project-software-engineering@ttn/devices/lht-saxion/up"))
             .WithTopicFilter(f => f.WithTopic("v3/project-software-engineering@ttn/devices/lht-wierden/up"))
             .WithTopicFilter(f => f.WithTopic("v3/project-software-engineering@ttn/devices/lht-gronau/up"))
             .Build();
 
-        await mqttClient.SubscribeAsync(subOptions, CancellationToken.None);
+        var subOptions2 = mqttFactory.CreateSubscribeOptionsBuilder()
+            .WithTopicFilter(f => f.WithTopic("v3/fipy-test-1@ttn/devices/eui-70b3d57ed00581da/up"))
+            .Build();
 
-        mqttClient.ApplicationMessageReceivedAsync += async args =>
-        {
-            try
-            {
-                var payload = Encoding.UTF8.GetString(args.ApplicationMessage.Payload);
-                var message = ParseNodeMessage(JsonNode.Parse(payload)!);
+        await mqttClient1.SubscribeAsync(subOptions1, CancellationToken.None);
+        await mqttClient2.SubscribeAsync(subOptions2, CancellationToken.None);
 
-                Console.WriteLine("Received message from: " + message.NodeInfo.DeviceName);
-                await StoreMessageAsync(context, message);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        };
+        mqttClient1.ApplicationMessageReceivedAsync += OnMessageReceived;
+        mqttClient2.ApplicationMessageReceivedAsync += OnMessageReceived;
 
-        mqttClient.DisconnectedAsync += async args =>
+        mqttClient1.DisconnectedAsync += async args =>
         {
             if (args.ClientWasConnected)
             {
-                await mqttClient.ConnectAsync(mqttClient.Options);
+                await mqttClient1.ConnectAsync(mqttClient1.Options);
+            }
+        };
+
+        mqttClient2.DisconnectedAsync += async args =>
+        {
+            if (args.ClientWasConnected)
+            {
+                await mqttClient2.ConnectAsync(mqttClient2.Options);
             }
         };
     }
 
-    private static async Task StoreMessageAsync(KlimaWatchContext context, NodeMessage message)
+    private static async Task OnMessageReceived(MqttApplicationMessageReceivedEventArgs args)
+    {
+        try
+        {
+            var payload = Encoding.UTF8.GetString(args.ApplicationMessage.Payload);
+            var message = ParseNodeMessage(JsonNode.Parse(payload)!);
+
+            Console.WriteLine("Received message from: " + message.NodeInfo.DeviceName);
+            await StoreMessageAsync(message);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+
+    private static async Task StoreMessageAsync(NodeMessage message)
     {
         if (!IsEntityStateValid(message)) throw new ArgumentException("Message model is invalid");
         if (!IsEntityStateValid(message.NodeInfo)) throw new ArgumentException("Node model is invalid");
 
         var node = message.NodeInfo;
 
-        var exists = await context.Nodes.FindAsync(node.DeviceEui);
+        var exists = await Context.Nodes.FindAsync(node.DeviceEui);
         if (exists == null)
         {
-            await context.Nodes.AddAsync(node);
+            await Context.Nodes.AddAsync(node);
         }
         else
         {
@@ -89,12 +121,12 @@ public static class MqttClient
             exists.DeviceName = node.DeviceName;
             exists.SensorType = node.SensorType;
 
-            context.Nodes.Update(exists);
+            Context.Nodes.Update(exists);
             message.NodeInfo = exists;
         }
 
-        await context.NodeMessages.AddAsync(message);
-        await context.SaveChangesAsync();
+        await Context.NodeMessages.AddAsync(message);
+        await Context.SaveChangesAsync();
     }
 
     private static bool IsEntityStateValid(object model)
@@ -119,6 +151,7 @@ public static class MqttClient
         {
             { } when deviceName.StartsWith("lht-") => SensorType.Outdoor,
             { } when deviceName.StartsWith("py-") => SensorType.Indoor,
+            { } when deviceName.StartsWith("eui-") => SensorType.Indoor,
             _ => throw new ArgumentException("Invalid sensor type")
         };
 

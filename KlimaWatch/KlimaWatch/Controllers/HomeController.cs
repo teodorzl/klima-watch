@@ -1,4 +1,5 @@
-﻿using KlimaWatch.Services.Interfaces;
+﻿using KlimaWatch.Models;
+using KlimaWatch.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KlimaWatch.Controllers;
