@@ -27,12 +27,26 @@ public class HomeController : Controller
         return View("Team");
     }
 
-    public IActionResult Dashboard()
+    public async Task<IActionResult> Dashboard()
     {
-        return View("Dashboard");
+        var weatherData = await _owmService.GetAllDataAsync();
+        return View(weatherData);
     }
-    public IActionResult Table()
+    public  async Task<IActionResult> Table()
     {
-        return View("Table");
+        var weatherDataTable = await _owmService.GetAllDataAsync();
+        
+        return View(weatherDataTable);
     }
+    
+    public async Task<IActionResult> NodeTable(string id)
+    {
+        var nodeInfo = await _nodesService.GetNodeDetailsAsync(id);
+        var nodeMessages = await _nodesService.GetMessagesFromNodeAsync(id);
+
+        var model = new NodePageViewModel { NodeInfo = nodeInfo, NodeMessages = nodeMessages };
+        return View(model);
+    }
+
+   
 }

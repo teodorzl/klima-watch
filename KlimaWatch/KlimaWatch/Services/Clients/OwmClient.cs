@@ -4,12 +4,11 @@ using KlimaWatch.Data;
 using KlimaWatch.Data.Entities.OwmModels;
 using Microsoft.EntityFrameworkCore;
 
-namespace KlimaWatch.Services;
+namespace KlimaWatch.Services.Clients;
 
 public static class OwmClient
 {
     private const string ApiKey = "4d715d88eae9d340ac1e226a2be6dfa4";
-
     private const string ApiUrl =
         $@"https://api.openweathermap.org/data/2.5/weather?lat={{0}}&lon={{1}}&appid={ApiKey}&units=metric";
 

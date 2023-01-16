@@ -6,7 +6,7 @@ using KlimaWatch.Data.Entities.Nodes;
 using MQTTnet;
 using MQTTnet.Client;
 
-namespace KlimaWatch.Services;
+namespace KlimaWatch.Services.Clients;
 
 public static class MqttClient
 {
