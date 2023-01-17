@@ -23,6 +23,7 @@
     {
         var maxValue = 255;
         var onePercentage = maxValue / 100;
+        if (Math.Round(lux / onePercentage) > 100) return 100;
         return Math.Round(lux/onePercentage);
     };
     double ConvertLux(double lux){
