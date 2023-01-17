@@ -19,8 +19,9 @@
 		src="https://kit.fontawesome.com/50cde61edc.js"
 		crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-	<script src="/js/site.js"></script>
+	<script src="/js/site.js?2"></script>
 	<script src="/js/loading.js"></script>
+	<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 	<span class="loader" id="loader"></span>
 	@if (Model.Count == 0)
 	{
@@ -54,57 +55,88 @@
 		var pySaxionId = "70B3D5499ED96FBD";
 		var lhtGronauId = "A84041C1818350AD";
 		var lhtWierdenId = "A840414E618350B1";
+		var lhtSaxionId = "A840411661835048";
+		var KlimaWatchSensor = "70B3D57ED00581DA";
 		@foreach (var weather in Model)
 		{
 			if (weather.NodeInfoDeviceEui == pyWierdenId)
 			{
 				<script>
-				pyWierden_Temperature.push(@weather.Temperature);
-				pyWierden_Humidity.push(@weather.Humidity);
-				pyWierden_Pressure.push(@weather.Pressure);
-				time.push('@weather.Time');
-				pyWierden_Visibility.push(@weather.Visibility);
-				pyWierden_WindSpeed.push(@weather.WindSpeed);
+				pyWierden.temperature.push(@weather.Temperature);
+				pyWierden.humidity.push(@weather.Humidity);
+				pyWierden.pressure.push(@weather.Pressure);
+				pyWierden.visibility.push(@weather.Visibility);
+				pyWierden.wind_speed.push(@weather.WindSpeed);
+				pyWierden.time.push('@weather.Time');
 			</script>
 			}
 			if (weather.NodeInfoDeviceEui == pySaxionId)
 			{
 				<script>
-				pySaxion_Temperature.push(@weather.Temperature);
-				pySaxion_Humidity.push(@weather.Humidity);
-				pySaxion_Pressure.push(@weather.Pressure);
-				pySaxion_Visibility.push(@weather.Visibility);
-				pySaxion_WindSpeed.push(@weather.WindSpeed);
-			</script>
+					pySaxion.temperature.push(@weather.Temperature);
+					pySaxion.humidity.push(@weather.Humidity);
+					pySaxion.pressure.push(@weather.Pressure);
+					pySaxion.visibility.push(@weather.Visibility);
+					pySaxion.wind_speed.push(@weather.WindSpeed);
+					pySaxion.time.push('@weather.Time');
+				</script>
+
 			}
 			if (weather.NodeInfoDeviceEui == lhtGronauId)
 			{
 				<script>
-				lhtGronau_Temperature.push(@weather.Temperature);
-				lhtGronau_Humidity.push(@weather.Humidity);
-				lhtGronau_Pressure.push(@weather.Pressure);
-				lhtGronau_Visibility.push(@weather.Visibility);
-				lhtGronau_WindSpeed.push(@weather.WindSpeed);
-			</script>
+					lhtGronau.temperature.push(@weather.Temperature);
+					lhtGronau.humidity.push(@weather.Humidity);
+					lhtGronau.pressure.push(@weather.Pressure);
+					lhtGronau.visibility.push(@weather.Visibility);
+					lhtGronau.wind_speed.push(@weather.WindSpeed);
+					lhtGronau.time.push('@weather.Time');
+				</script>
+				
 			}
 			if (weather.NodeInfoDeviceEui == lhtWierdenId)
 			{
 				<script>
-				lhtWierden_Temperature.push(@weather.Temperature);
-				lhtWierden_Humidity.push(@weather.Humidity);
-				lhtWierden_Pressure.push(@weather.Pressure);
-				lhtWierden_Visibility.push(@weather.Visibility);
+					lhtWierden.temperature.push(@weather.Temperature);
+					lhtWierden.humidity.push(@weather.Humidity);
+					lhtWierden.pressure.push(@weather.Pressure);
+					lhtWierden.visibility.push(@weather.Visibility);
+					lhtWierden.wind_speed.push(@weather.WindSpeed);
+					lhtWierden.time.push('@weather.Time');
+				</script>
 				
-				lhtWierden_WindSpeed.push(@weather.WindSpeed);
-			</script>
+			}
+			if (weather.NodeInfoDeviceEui == lhtSaxionId)
+			{
+				<script>
+					lhtSaxion.temperature.push(@weather.Temperature);
+					lhtSaxion.humidity.push(@weather.Humidity);
+					lhtSaxion.pressure.push(@weather.Pressure);
+					lhtSaxion.visibility.push(@weather.Visibility);
+					lhtSaxion.wind_speed.push(@weather.WindSpeed);
+					lhtSaxion.time.push('@weather.Time');
+				</script>
+				
+			}
+			if (weather.NodeInfoDeviceEui == KlimaWatchSensor)
+			{
+				<script>
+					KlimaWatchSensor.temperature.push(@weather.Temperature);
+					KlimaWatchSensor.humidity.push(@weather.Humidity);
+					KlimaWatchSensor.pressure.push(@weather.Pressure);
+					KlimaWatchSensor.visibility.push(@weather.Visibility);
+					KlimaWatchSensor.wind_speed.push(@weather.WindSpeed);
+					KlimaWatchSensor.time.push('@weather.Time');
+				</script>
 			}
 		}
 		<script>
 		window.onload = function (){
 			Loading_Loop();
-			Get_All_Max_Min_YAsis_Value();
-			Temperature();
+			Sort_Data();
+			Get_All_Max_Min_YAsis_Value();	 
 		}
+		Temperature();
 		</script>
 	}
 	<script src="/js/button.js"></script>
