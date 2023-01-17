@@ -2,10 +2,8 @@
 <project version="4">
   <component name="UserContentModel">
     <attachedFolders>
-      <Path>../../../project</Path>
-      <Path>../../../test6</Path>
-      <Path>../../../test7</Path>
       <Path>../../klima-watch</Path>
+      
     </attachedFolders>
     <explicitIncludes />
     <explicitExcludes />
