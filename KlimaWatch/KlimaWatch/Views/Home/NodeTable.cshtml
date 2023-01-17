@@ -37,10 +37,16 @@
         }
         
     }
-  
-    <div class="container" id ="table" hidden>
-        <h1 class="text-center">@Model.NodeInfo.DeviceName</h1>
 
+    var luxConverted = 0.0;
+    <div class="container" id="table" hidden>
+        @if(Model.NodeInfo.DeviceName == "eui-70b3d57ed00581da"){
+         <h1 class="text-center">KlimaWatch's Sensor</h1>
+        }
+        else{
+        <h1 class="text-center">@Model.NodeInfo.DeviceName</h1>
+        }
+        
         <table class="table table-hover table-bordered auto-datatable text-center">
             <thead>
             <tr>
@@ -95,17 +101,34 @@
                     {
                         var indoorMessage = message as IndoorNodeMessage;
                         <td>@indoorMessage?.Temperature °C</td>
-                        <td>@LuxPercentage((double)indoorMessage?.Light)%</td>
+                        if (indoorMessage.Light != null)
+                        {
+                            <td>@LuxPercentage((double)indoorMessage.Light)%</td>
+                        }
+                        else
+                        {
+                            <td>No information</td>
+                        }
+
                         <td>@indoorMessage?.Pressure Pa</td>
                     }
                     else
                     {
                         var outdoorMessage = message as OutdoorNodeMessage;
-                        var luxConverted = LuxPercentage(ConvertLux((double)outdoorMessage?.Illumination));
                         <td>@outdoorMessage?.IndoorTemp °C</td>
                         <td>@outdoorMessage?.Humidity %rh</td>
                         <td>@outdoorMessage?.BatteryVoltage V</td>
-                        <td>@luxConverted %</td>
+                        if (outdoorMessage.Illumination != null)
+                        {
+                            luxConverted = LuxPercentage(ConvertLux((double)outdoorMessage.Illumination));
+                            <td>@luxConverted %</td>
+                        }
+                        else
+                        {
+                            <td>No information</td>
+                        }
+
+
                     }
                 </tr>
             }
