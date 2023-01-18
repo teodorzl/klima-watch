@@ -21,17 +21,17 @@ public class HomeController : Controller
     {
         return View();
     }
+    public async Task<IActionResult>  Chart()
+    {
+        var weatherData = await _owmService.GetAllDataAsync();
+        return View(weatherData);
+    }
 
     public IActionResult Team()
     {
         return View("Team");
     }
-
-    public async Task<IActionResult> Dashboard()
-    {
-        var weatherData = await _owmService.GetAllDataAsync();
-        return View(weatherData);
-    }
+    
     public  async Task<IActionResult> Table()
     {
         var weatherDataTable = await _owmService.GetAllDataAsync();
