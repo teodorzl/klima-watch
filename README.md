@@ -8,9 +8,9 @@
     The app is written in C# using the .NET Core framework.
 
 ## Installation
-    1. Clone the repository `https://github.com/teodorzl/klima-watch.git`
+    1. Clone the repository ```https://github.com/teodorzl/klima-watch.git```
     2. Install the dependencies
-    3. Run the app  `dotnet run`
+    3. Run the app  ```dotnet run```
 ## Team members
     - Teodor Zlatanov 542734 542734@student.saxion.nl
     - Thanh Tran 516467 516467@student.saxion.nl
