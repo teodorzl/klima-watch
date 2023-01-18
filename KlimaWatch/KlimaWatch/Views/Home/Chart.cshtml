@@ -1,0 +1,140 @@
+﻿@model ICollection<KlimaWatch.Data.Entities.OwmModels.HourlyWeather>;
+@{
+	ViewData["Title"] = "Chart";
+
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+		crossorigin="anonymous"/>
+	<link rel="preconnect" href="https://fonts.googleapis.com"/>
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+	<link
+		href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+		rel="stylesheet"/>
+	<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="/css/loading.css" rel="stylesheet" type="text/css"/>
+	<script
+		src="https://kit.fontawesome.com/50cde61edc.js"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+	<script src="/js/chart.js"></script>
+	
+	@if (Model.Count == 0)
+	{
+		<h1 class="text-center text-secondary">No weather data :(, wait for a few hours :)</h1>
+	}
+	else
+	{
+		<div class="container">
+			<!--Title-->
+			<div class="container text-md-start my-8 mt-9">
+				<div class="row align-items-center">
+					<h1 class="col-md-6">Weather Chart</h1>
+					<div class="form-check form-switch ps-2 align-self-center col-1 me-4 me-md-1">
+						<input
+							class="form-check-input"
+							type="checkbox"
+							id="flexSwitchCheckChecked"/>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<button onclick="Temperature()" type="button" class="btn btn-info">Temperature</button>
+				<button onclick="Pressure()" type="button" class="btn btn-info">Pressure</button>
+				<button onclick="Humidity()" type="button" class="btn btn-info">Humidity</button>
+				<button onclick="Visibility()" type="button" class="btn btn-info">Visibility</button>
+				<button onclick="WindSpeed()" type="button" class="btn btn-info">WindSpeed</button>
+				<button onclick="Hours()" type="button" class="btn btn-dark" style="float: right;">Hours</button>
+				<button onclick="All_Data()" type="button" class="btn btn-dark" style="float: right; margin-right: 10px">All Data</button>
+			</div>
+			<canvas id="myChart"></canvas>
+		</div>
+		var pyWierdenId = "70B3D549963B71B0";
+		var pySaxionId = "70B3D5499ED96FBD";
+		var lhtGronauId = "A84041C1818350AD";
+		var lhtWierdenId = "A840414E618350B1";
+		var lhtSaxionId = "A840411661835048";
+		var KlimaWatchSensor = "70B3D57ED00581DA";
+		@foreach (var weather in Model)
+		{
+			if (weather.NodeInfoDeviceEui == pyWierdenId)
+			{
+				<script>
+				pyWierden.temperature.push(@weather.Temperature);
+				pyWierden.humidity.push(@weather.Humidity);
+				pyWierden.pressure.push(@weather.Pressure);
+				pyWierden.visibility.push(@weather.Visibility);
+				pyWierden.wind_speed.push(@weather.WindSpeed);
+				pyWierden.time.push(new Date('@weather.Time'));
+			</script>
+			}
+			if (weather.NodeInfoDeviceEui == pySaxionId)
+			{
+				<script>
+					pySaxion.temperature.push(@weather.Temperature);
+					pySaxion.humidity.push(@weather.Humidity);
+					pySaxion.pressure.push(@weather.Pressure);
+					pySaxion.visibility.push(@weather.Visibility);
+					pySaxion.wind_speed.push(@weather.WindSpeed);
+					pySaxion.time.push(new Date('@weather.Time'));
+				</script>
+
+			}
+			if (weather.NodeInfoDeviceEui == lhtGronauId)
+			{
+				<script>
+					lhtGronau.temperature.push(@weather.Temperature);
+					lhtGronau.humidity.push(@weather.Humidity);
+					lhtGronau.pressure.push(@weather.Pressure);
+					lhtGronau.visibility.push(@weather.Visibility);
+					lhtGronau.wind_speed.push(@weather.WindSpeed);
+					lhtGronau.time.push(new Date('@weather.Time'));
+				</script>
+
+			}
+			if (weather.NodeInfoDeviceEui == lhtWierdenId)
+			{
+				<script>
+					lhtWierden.temperature.push(@weather.Temperature);
+					lhtWierden.humidity.push(@weather.Humidity);
+					lhtWierden.pressure.push(@weather.Pressure);
+					lhtWierden.visibility.push(@weather.Visibility);
+					lhtWierden.wind_speed.push(@weather.WindSpeed);
+					lhtWierden.time.push(new Date('@weather.Time'));
+				</script>
+
+			}
+			if (weather.NodeInfoDeviceEui == lhtSaxionId)
+			{
+				<script>
+					lhtSaxion.temperature.push(@weather.Temperature);
+					lhtSaxion.humidity.push(@weather.Humidity);
+					lhtSaxion.pressure.push(@weather.Pressure);
+					lhtSaxion.visibility.push(@weather.Visibility);
+					lhtSaxion.wind_speed.push(@weather.WindSpeed);
+					lhtSaxion.time.push(new Date('@weather.Time'));
+				</script>
+
+			}
+			if (weather.NodeInfoDeviceEui == KlimaWatchSensor)
+			{
+				<script>
+					KlimaWatchSensor.temperature.push(@weather.Temperature);
+					KlimaWatchSensor.humidity.push(@weather.Humidity);
+					KlimaWatchSensor.pressure.push(@weather.Pressure);
+					KlimaWatchSensor.visibility.push(@weather.Visibility);
+					KlimaWatchSensor.wind_speed.push(@weather.WindSpeed);
+					KlimaWatchSensor.time.push(new Date('@weather.Time'));
+				</script>
+			}
+		}
+		<canvas id="myChart"></canvas>
+		<script>
+			Sort_Data();
+		 	myChart = new Chart(("myChart"),config);
+		</script>
+		<script src="/js/button.js"></script>
+	}
+}
