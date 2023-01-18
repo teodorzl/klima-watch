@@ -17,6 +17,12 @@
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
     <script src="/js/loading.js"></script>
     <span class="loader" id="loader"></span>
+    var pyWierdenId = "70B3D549963B71B0";
+    var pySaxionId = "70B3D5499ED96FBD";
+    var lhtGronauId = "A84041C1818350AD";
+    var lhtWierdenId = "A840414E618350B1";
+    var lhtSaxionId = "A840411661835048";
+    var KlimaWatchSensor = "70B3D57ED00581DA";
     @if (Model.Count == 0)
     {
         <h1 class="text-center text-secondary">No weather data :(, wait for a few hours :)</h1>
@@ -29,6 +35,7 @@
              <thead>
                  <tr>
                      <th class="fw-bold">Time</th>
+                     <th class="fw-bold">Device Name</th>
                      <th class="fw-bold">Place Name</th>
                      <th class="fw-bold">Weather</th>
                      <th class="fw-bold">Temperature</th>
@@ -45,7 +52,25 @@
                     {
                         <tr>
                             <td class="small">@weather.Time</td>
-                            <td><a asp-action="NodeTable" asp-route-id="@weather.NodeInfoDeviceEui">@weather.PlaceName</a></td>
+                            @if(weather.NodeInfoDeviceEui == pyWierdenId){
+                            <td><a asp-action="NodeTable" asp-route-id="@weather.NodeInfoDeviceEui">pyWierden</a></td>
+                            }
+                            @if(weather.NodeInfoDeviceEui == pySaxionId){
+                            <td><a asp-action="NodeTable" asp-route-id="@weather.NodeInfoDeviceEui">pySaxion</a></td>
+                            }
+                            @if(weather.NodeInfoDeviceEui == lhtGronauId){
+                            <td><a asp-action="NodeTable" asp-route-id="@weather.NodeInfoDeviceEui">lhtGronau</a></td>
+                            }
+                            @if(weather.NodeInfoDeviceEui == lhtWierdenId){
+                            <td><a asp-action="NodeTable" asp-route-id="@weather.NodeInfoDeviceEui">lhtWierden</a></td>
+                            }
+                            @if(weather.NodeInfoDeviceEui == lhtSaxionId){
+                            <td><a asp-action="NodeTable" asp-route-id="@weather.NodeInfoDeviceEui">lhtSaxion</a></td>
+                            }
+                            @if (weather.NodeInfoDeviceEui == KlimaWatchSensor){
+                                <td><a asp-action="NodeTable" asp-route-id="@weather.NodeInfoDeviceEui">KlimaWatchSensor</a></td>
+                            }
+                            <td>@weather.PlaceName</td>
                             <td>@weather.WeatherDesc</td>
                             <td>@weather.Temperature</td>
                             <td>@weather.Pressure</td>
