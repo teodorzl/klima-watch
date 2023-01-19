@@ -37,7 +37,7 @@ function redraw() {
 
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            location.href = '/home/Dashboard';
+            location.href = '/home/Chart';
         });
     });
 }// redraw
