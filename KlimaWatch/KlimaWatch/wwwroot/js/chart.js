@@ -46,8 +46,8 @@ let KlimaWatchSensor ={
     wind_speed: [],
     time:[]
 }
-var track_value = 0;
-var track_display = 1;
+let track_value = 0;
+let track_display = 1;
 let Chart_Data = {
     labels: pyWierden.time,
     datasets: [{
@@ -180,7 +180,10 @@ function Temperature(){
     track_display = 1;
     if(track_value === 1) {
         Hours();
-    }if(track_value === 0){
+    }
+    if(track_value === 2) {
+        Week();
+    }else{
         Make_Temperature_Chart();
     }
 }
@@ -188,7 +191,9 @@ function Pressure(){
     track_display = 2;
     if(track_value === 1) {
         Hours();
-    }if(track_value === 0) {
+    } if(track_value === 2) {
+        Week();
+    }else{
         Make_Pressure_Chart();
     }
 }
@@ -196,7 +201,9 @@ function Humidity(){
     track_display = 3;
     if(track_value === 1) {
         Hours();
-    }if(track_value === 0){
+    } if(track_value === 2) {
+        Week();
+    }else {
         Make_Humidity_Chart();
     }
 }
@@ -204,7 +211,9 @@ function Visibility(){
     track_display = 4;
     if(track_value === 1) {
         Hours();
-    }if(track_value === 0){
+    } if(track_value === 2) {
+        Week();
+    }else {
         Make_Visibility_Chart();
     }
 }
@@ -212,33 +221,13 @@ function WindSpeed(){
     track_display = 5;
     if(track_value === 1) {
         Hours();
-    }if(track_value === 0){
+    } if(track_value === 2) {
+        Week();
+    }else{
         Make_Wind_Speed_Chart();
     }
 }
-function Tracking_Newest_Data(arr){
-    let index = arr.time.length -1;
-    let date = new Date(arr.time[index]);
-    let day = date.getDate();
-    let month = date.getMonth();
-    let year = date.getFullYear();
-    let track=0;
-    while(true){
-        for(let i = arr.time.length -1;i>0;i--){
-            let current = new Date(arr.time[i]);
-            let current_day = current.getDate();
-            let current_month = arr.time[i].getMonth();
-            let current_year = arr.time[i].getFullYear();
-            if(day === current_day && month === current_month && year === current_year){
-                track++;
-            }else{
-                return track;
-            }
-        }
-
-    }
-}
-function Update_Graph(index1,index2){
+function Update_Graph(index1,index2,time_unit){
     let index_1 = pyWierden.time.length;
     let index_2 = lhtSaxion.time.length;
     let position1 = index_1 - index1;
@@ -274,7 +263,7 @@ function Update_Graph(index1,index2){
                 newData0.push(pyWierden.time[i]);
             }
             Chart_Data.labels = newData0;
-            config.options.scales.xAxes[0].time.unit = "hour";
+            config.options.scales.xAxes[0].time.unit = time_unit;
             config.options.title.text = "Temperature";
             config.options.scales.yAxes[0].scaleLabel.labelString = "C Degree";
             Chart_Data.datasets[0].data = newData1;
@@ -308,7 +297,7 @@ function Update_Graph(index1,index2){
                 newData0.push(pyWierden.time[i]);
             }
             Chart_Data.labels = newData0;
-            config.options.scales.xAxes[0].time.unit = "hour";
+            config.options.scales.xAxes[0].time.unit = time_unit;
             config.options.title.text = "Pressure";
             config.options.scales.yAxes[0].scaleLabel.labelString = "Pressure (hPa)";
             Chart_Data.datasets[0].data = newData1;
@@ -342,7 +331,7 @@ function Update_Graph(index1,index2){
                 newData0.push(pyWierden.time[i]);
             }
             Chart_Data.labels = newData0;
-            config.options.scales.xAxes[0].time.unit = "hour";
+            config.options.scales.xAxes[0].time.unit = time_unit;
             config.options.title.text = "Humidity";
             config.options.scales.yAxes[0].scaleLabel.labelString = "Relative Humidity %";
             Chart_Data.datasets[0].data = newData1;
@@ -376,7 +365,7 @@ function Update_Graph(index1,index2){
                 newData0.push(pyWierden.time[i]);
             }
             Chart_Data.labels = newData0;
-            config.options.scales.xAxes[0].time.unit = "hour";
+            config.options.scales.xAxes[0].time.unit = time_unit;
             config.options.title.text = "Visibility";
             config.options.scales.yAxes[0].scaleLabel.labelString = "Meter";
             Chart_Data.datasets[0].data = newData1;
@@ -410,7 +399,7 @@ function Update_Graph(index1,index2){
                 newData0.push(pyWierden.time[i]);
             }
             Chart_Data.labels = newData0;
-            config.options.scales.xAxes[0].time.unit = "hour";
+            config.options.scales.xAxes[0].time.unit = time_unit;
             config.options.title.text = "Wind Speed";
             config.options.scales.yAxes[0].scaleLabel.labelString = "Metres per second (m/s)";
             Chart_Data.datasets[0].data = newData1;
@@ -426,7 +415,9 @@ function Update_Graph(index1,index2){
 }
 function Hours(){
     track_value = 1;
-    Update_Graph(Tracking_Newest_Data(pyWierden),Tracking_Newest_Data(lhtSaxion))
+    let time_unit = "hour"
+    let previous_date = pyWierden.time[pyWierden.time.length-1].getTime() - (24 * 60 * 60 * 1000);
+    Update_Graph(Get_Data_In_Range(pyWierden,previous_date),Get_Data_In_Range(lhtSaxion,previous_date),time_unit);
 }
 function Make_Temperature_Chart(){
     Chart_Data.labels = pyWierden.time;
@@ -512,4 +503,21 @@ function All_Data(){
             Make_Wind_Speed_Chart();
             break;
     }
+}
+function Get_Data_In_Range(arr,start_date_range){
+    let index = arr.time.length - 1;
+   
+    let track = 0;
+    for (let i = arr.time.length - 1; i > 0; i--) {
+        if (start_date_range <= arr.time[i] && arr.time[i] <= arr.time[index]) {
+            track++;
+        }else break;
+    }
+    return track;
+}
+function Week(){
+    track_value = 2;
+    let previous_week = pyWierden.time[pyWierden.time.length-1].getTime() - (7 * 24 * 60 * 60 * 1000);
+    let time_unit = "day";
+    Update_Graph(Get_Data_In_Range(pyWierden,previous_week),Get_Data_In_Range(lhtSaxion),time_unit,previous_week)
 }

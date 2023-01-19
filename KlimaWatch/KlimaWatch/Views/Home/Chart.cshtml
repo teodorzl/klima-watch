@@ -20,7 +20,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 	<script src="/js/chart.js"></script>
-	
+	<script src="/js/loading.js"></script>
+	<span class="loader" id="loader"></span>
 	@if (Model.Count == 0)
 	{
 		<h1 class="text-center text-secondary">No weather data :(, wait for a few hours :)</h1>
@@ -46,7 +47,8 @@
 				<button onclick="Humidity()" type="button" class="btn btn-info">Humidity</button>
 				<button onclick="Visibility()" type="button" class="btn btn-info">Visibility</button>
 				<button onclick="WindSpeed()" type="button" class="btn btn-info">WindSpeed</button>
-				<button onclick="Hours()" type="button" class="btn btn-dark" style="float: right;">Hours</button>
+				<button onclick="Hours()" type="button" class="btn btn-dark" style="float: right;">24 Hours</button>
+				<button onclick="Week()" type="button" class="btn btn-dark" style="float: right; margin-right: 10px">Week</button>
 				<button onclick="All_Data()" type="button" class="btn btn-dark" style="float: right; margin-right: 10px">All Data</button>
 			</div>
 			<canvas id="myChart"></canvas>
@@ -132,8 +134,11 @@
 		}
 		<canvas id="myChart"></canvas>
 		<script>
-			Sort_Data();
-		 	myChart = new Chart(("myChart"),config);
+		window.onload = function (){
+		  Loading_Loop();
+		}
+		Sort_Data();
+		myChart = new Chart(("myChart"),config);
 		</script>
 		<script src="/js/button.js"></script>
 	}
