@@ -183,7 +183,7 @@ function Temperature(){
     }
     if(track_value === 2) {
         Week();
-    }else{
+    }if(track_value === 0){
         Make_Temperature_Chart();
     }
 }
@@ -193,7 +193,7 @@ function Pressure(){
         Hours();
     } if(track_value === 2) {
         Week();
-    }else{
+    }if(track_value === 0){
         Make_Pressure_Chart();
     }
 }
@@ -203,7 +203,7 @@ function Humidity(){
         Hours();
     } if(track_value === 2) {
         Week();
-    }else {
+    }if(track_value === 0) {
         Make_Humidity_Chart();
     }
 }
@@ -213,7 +213,7 @@ function Visibility(){
         Hours();
     } if(track_value === 2) {
         Week();
-    }else {
+    }if(track_value === 0) {
         Make_Visibility_Chart();
     }
 }
@@ -223,7 +223,7 @@ function WindSpeed(){
         Hours();
     } if(track_value === 2) {
         Week();
-    }else{
+    }if(track_value === 0){
         Make_Wind_Speed_Chart();
     }
 }
@@ -410,7 +410,6 @@ function Update_Graph(index1,index2,time_unit){
             Chart_Data.datasets[5].data = newData6;
             myChart.update();
             break;
-
     }
 }
 function Hours(){
