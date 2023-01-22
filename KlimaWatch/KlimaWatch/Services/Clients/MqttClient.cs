@@ -7,7 +7,9 @@ using MQTTnet;
 using MQTTnet.Client;
 
 namespace KlimaWatch.Services.Clients;
-
+/**
+ * Client for retrieving information from The Things Network 
+ */
 public static class MqttClient
 {
     private static readonly KlimaWatchContext Context = new();
@@ -23,13 +25,19 @@ public static class MqttClient
     private const string Pass2 =
         "NNSXS.XVHEOFDCE637C55TH7EFD4PCHI2ECV2JP2BHYSY.BRQEGGHWL6J6QPJ77ZCW32SETIN3EC2NJYGYWO3JR5WIKI4DJ4EA";
 
+    /**
+     * Setup the clients
+     */
     public static async Task ConnectClient()
     {
         var mqttFactory = new MqttFactory();
 
+        // Takes data from the teacher-provided sensors
         var mqttClient1 = mqttFactory.CreateMqttClient();
+        // Takes data from our sensor
         var mqttClient2 = mqttFactory.CreateMqttClient();
 
+        // Generate the correct options for each client
         var mqttClientOptions1 = new MqttClientOptionsBuilder()
             .WithTcpServer(Host1)
             .WithCredentials(Name1, Pass1)
@@ -44,11 +52,13 @@ public static class MqttClient
             .WithCleanSession()
             .Build();
 
+        // Connect the clients
         await mqttClient1.ConnectAsync(mqttClientOptions1, CancellationToken.None);
         Console.WriteLine("Connected to " + Name1);
         await mqttClient2.ConnectAsync(mqttClientOptions2, CancellationToken.None);
         Console.WriteLine("Connected to " + Name2);
 
+        // Subscribe to the correct topics
         var subOptions1 = mqttFactory.CreateSubscribeOptionsBuilder()
             .WithTopicFilter(f => f.WithTopic("v3/project-software-engineering@ttn/devices/py-wierden/up"))
             .WithTopicFilter(f => f.WithTopic("v3/project-software-engineering@ttn/devices/py-saxion/up"))
@@ -64,9 +74,11 @@ public static class MqttClient
         await mqttClient1.SubscribeAsync(subOptions1, CancellationToken.None);
         await mqttClient2.SubscribeAsync(subOptions2, CancellationToken.None);
 
+        // Add message received handlers
         mqttClient1.ApplicationMessageReceivedAsync += OnMessageReceived;
         mqttClient2.ApplicationMessageReceivedAsync += OnMessageReceived;
 
+        // Add disconnect handlers
         mqttClient1.DisconnectedAsync += async args =>
         {
             if (args.ClientWasConnected)
@@ -84,6 +96,9 @@ public static class MqttClient
         };
     }
 
+    /**
+     * Handle received message
+     */
     private static async Task OnMessageReceived(MqttApplicationMessageReceivedEventArgs args)
     {
         try
@@ -100,6 +115,9 @@ public static class MqttClient
         }
     }
 
+    /**
+     * Store the message data in the DB
+     */
     private static async Task StoreMessageAsync(NodeMessage message)
     {
         if (!IsEntityStateValid(message)) throw new ArgumentException("Message model is invalid");
@@ -129,6 +147,9 @@ public static class MqttClient
         await Context.SaveChangesAsync();
     }
 
+    /**
+     * Check if the model is correct
+     */
     private static bool IsEntityStateValid(object model)
     {
         var validationContext = new ValidationContext(model);
@@ -138,6 +159,9 @@ public static class MqttClient
             validateAllProperties: true);
     }
 
+    /**
+     * Parse the json message from the node
+     */
     private static NodeMessage ParseNodeMessage(JsonNode json)
     {
         var root = json!.Root;
@@ -168,6 +192,7 @@ public static class MqttClient
 
         NodeMessage nodeMessage;
 
+        // The node can be an outdoor sensor (dragino) or an indoor sensor (PyCom)
         if (sensorType == SensorType.Indoor)
         {
             nodeMessage = new IndoorNodeMessage

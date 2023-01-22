@@ -1,7 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace KlimaWatch.Data.Entities.Nodes;
-
+/**
+ * A class for storing node information
+ */
 public class NodeInfo
 {
     public NodeInfo()

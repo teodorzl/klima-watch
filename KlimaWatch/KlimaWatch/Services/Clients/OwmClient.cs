@@ -14,6 +14,9 @@ public static class OwmClient
 
     private static readonly KlimaWatchContext Context = new();
 
+    /**
+     * Make a request one every hour for each node
+     */
     public static void StartClient()
     {
         var timer = new System.Timers.Timer(1000 * 60 * 60);
@@ -22,6 +25,9 @@ public static class OwmClient
         timer.Enabled = true;
     }
 
+    /**
+     * Make the forecast request for all nodes
+     */
     private static async Task MakeRequest()
     {
         var nodes = await Context.Nodes.ToArrayAsync();
@@ -51,6 +57,9 @@ public static class OwmClient
         }
     }
 
+    /**
+     * Parse the weather forecast json
+     */
     private static HourlyWeather ParseWeatherMessage(JsonNode json)
     {
         var root = json.Root;
@@ -77,6 +86,9 @@ public static class OwmClient
         };
     }
 
+    /**
+     * Store the forecast in the database
+     */
     private static async Task StoreMessageAsync(HourlyWeather message)
     {
         if (!IsEntityStateValid(message)) throw new ArgumentException("Message model is invalid");
@@ -86,6 +98,9 @@ public static class OwmClient
         await Context.SaveChangesAsync();
     }
 
+    /**
+     * Check if the model is correct
+     */
     private static bool IsEntityStateValid(object model)
     {
         var validationContext = new ValidationContext(model);
