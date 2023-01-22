@@ -5,7 +5,7 @@ using KlimaWatch.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the controller.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<INodesService, NodesService>();
 builder.Services.AddScoped<IOwmService, OwmService>();
@@ -32,6 +32,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// Start the two clients
 await MqttClient.ConnectClient();
 OwmClient.StartClient();
 

@@ -3,7 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using KlimaWatch.Data.Entities.Nodes;
 
 namespace KlimaWatch.Data.Entities.OwmModels;
-
+/**
+ * A class for storing OpenWeatherMaps data 
+ */
 public class HourlyWeather
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

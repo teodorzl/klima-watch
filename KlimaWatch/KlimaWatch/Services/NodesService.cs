@@ -12,7 +12,7 @@ public class NodesService : BaseService, INodesService
     {
     }
 
-    /*
+    /**
      * Removes an existing node and all of its messages from the database
      */
     public async Task DeleteNodeAsync(string deviceEui)
@@ -101,7 +101,7 @@ public class NodesService : BaseService, INodesService
         return messages;
     }
 
-    /*
+    /**
      * Returns a list of messages sent by a specific node during a given timeframe
      */
     public async Task<ICollection<NodeMessage>> GetNodeMessagesBetweenAsync(string deviceEui, DateTime from, DateTime to)

@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KlimaWatch.Data.Entities.Nodes;
 
+/**
+ * Base class for node messages
+ */
 public class NodeMessage
 {
     public NodeMessage()
